@@ -1,0 +1,76 @@
+# vsim -coverage -l 24_register_one_hot.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit 24_register_one_hot.ucdb; log -r /*;run -all" 
+# Start time: 19:56:36 on Dec 01,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit 24_register_one_hot.ucdb
+#  log -r /*
+# run -all
+# ===============================================
+#         Pat name: One Hot Check Register      ]
+# ===============================================
+# [ t =        100 ] WRITE data=32'h11111112 to addr=12'h000 with strb=4'b1111 
+# [ t =        171 ] WRITE data=32'h22222222 to addr=12'h004 with strb=4'b1111 
+# [ t =        251 ] WRITE data=32'h33333333 to addr=12'h008 with strb=4'b1111 
+# [ t =        331 ] WRITE data=32'h44444444 to addr=12'h00c with strb=4'b1111 
+# [ t =        411 ] WRITE data=32'h55555555 to addr=12'h010 with strb=4'b1111 
+# [ t =        491 ] WRITE data=32'h99999999 to addr=12'h014 with strb=4'b1111 
+# [ t =        571 ] WRITE data=32'haaaaaaaa to addr=12'h018 with strb=4'b1111 
+# [ t =        651 ] WRITE data=32'hffffffff to addr=12'h01c with strb=4'b1111 
+# [ t =        811 ] READ at addr = 12'h000 , the rdata actual = 32'h00000102 
+# [ t =        811 ] expect that rdata at addr=12'h000 is 32'h00000102 
+# [ t =        811 ]    >>>  PASS <<<     |   rdata actual =32'h00000102   =  rdata expect =32'h00000102 
+# -------------------------------------------------------------------------------------
+# [ t =        891 ] READ at addr = 12'h004 , the rdata actual = 32'h22222222 
+# [ t =        891 ] expect that rdata at addr=12'h004 is 32'h22222222 
+# [ t =        891 ]    >>>  PASS <<<     |   rdata actual =32'h22222222   =  rdata expect =32'h22222222 
+# -------------------------------------------------------------------------------------
+# [ t =        971 ] READ at addr = 12'h008 , the rdata actual = 32'h33333333 
+# [ t =        971 ] expect that rdata at addr=12'h008 is 32'h33333333 
+# [ t =        971 ]    >>>  PASS <<<     |   rdata actual =32'h33333333   =  rdata expect =32'h33333333 
+# -------------------------------------------------------------------------------------
+# [ t =       1051 ] READ at addr = 12'h00c , the rdata actual = 32'h44444444 
+# [ t =       1051 ] expect that rdata at addr=12'h00c is 32'h44444444 
+# [ t =       1051 ]    >>>  PASS <<<     |   rdata actual =32'h44444444   =  rdata expect =32'h44444444 
+# -------------------------------------------------------------------------------------
+# [ t =       1131 ] READ at addr = 12'h010 , the rdata actual = 32'h55555555 
+# [ t =       1131 ] expect that rdata at addr=12'h010 is 32'h55555555 
+# [ t =       1131 ]    >>>  PASS <<<     |   rdata actual =32'h55555555   =  rdata expect =32'h55555555 
+# -------------------------------------------------------------------------------------
+# [ t =       1211 ] READ at addr = 12'h014 , the rdata actual = 32'h00000001 
+# [ t =       1211 ] expect that rdata at addr=12'h014 is 32'h00000001 
+# [ t =       1211 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# [ t =       1291 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =       1291 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =       1291 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       1371 ] READ at addr = 12'h01c , the rdata actual = 32'h00000001 
+# [ t =       1371 ] expect that rdata at addr=12'h01c is 32'h00000001 
+# [ t =       1371 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                        TEST : PASS ALL                       ]============
+# =====================================================================================
+# Test_result PASSED
+# -------------------------------------------------------------------------------------
+# [ t =       1471 ] TEST COMPLETE. Total Errors: 0
+# -------------------------------------------------------------------------------------
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 1471 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 19:56:37 on Dec 01,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

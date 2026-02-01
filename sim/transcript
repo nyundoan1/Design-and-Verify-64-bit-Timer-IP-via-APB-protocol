@@ -1,0 +1,29 @@
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# vsim.wlf opened as dataset "vsim"
+# add wave vsim:/test_bench/*
+#  radix -decimal
+# decimal
+# 
+# stdin: <EOF>
+coverage open IP.ucdb
+# coverage read -dataset IP IP.ucdb
+# IP.ucdb opened as coverage dataset "IP"
+coverage exclude -src ../rtl/apb_reg_cnt.v -line 54 -code e -comment {wr en never get 1 when psel=0}
+coverage exclude -src ../rtl/apb_reg_cnt.v -line 62 -code e -comment {rd en never get 1 when psel = 0}
+coverage exclude -src ../rtl/apb_reg_cnt.v -line 94 -code e -comment {pwdata[11:8] >= 9 is blocked by TCR validation logic, making this condition unreachable}
+coverage exclude -src ../rtl/cnt_ctrl.v -line 45 -code e -comment {div_val is restricted by design and this condition cannot occur in any operational mode}
+# Two-Step Exclusions: on
+# ** Note: Saving exclusion data to file: /ictc/student_data/lenhan_1201/final_project/sim/exclude.do

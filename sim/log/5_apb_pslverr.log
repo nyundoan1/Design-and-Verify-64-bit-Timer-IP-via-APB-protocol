@@ -1,0 +1,112 @@
+# vsim -coverage -l 5_apb_pslverr.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit 5_apb_pslverr.ucdb; log -r /*;run -all" 
+# Start time: 19:56:46 on Dec 01,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit 5_apb_pslverr.ucdb
+#  log -r /*
+# run -all
+# =====================================================================================
+# [                            Pat name: Check APB  SLAVE ERROR                       ]
+# =====================================================================================
+# =====================================================================================
+# =========[                      SET PROHIBITED DIV VAL                  ]============
+# =====================================================================================
+# ------------------------------------------ 
+# [ t =        100 ] WRITE data=32'h00000900 to addr=12'h000 with strb=4'b0010 
+# >>> PASS <<<< | PSLVERR is assert when Write 00000009 (Prohitbited Value) to TCR Register
+# [ t =        251 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =        251 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =        251 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# ------------------------------------------ 
+# [ t =        251 ] WRITE data=32'h00000a00 to addr=12'h000 with strb=4'b0010 
+# >>> PASS <<<< | PSLVERR is assert when Write 0000000a (Prohitbited Value) to TCR Register
+# [ t =        411 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =        411 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =        411 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# ------------------------------------------ 
+# [ t =        411 ] WRITE data=32'h00000b00 to addr=12'h000 with strb=4'b0010 
+# >>> PASS <<<< | PSLVERR is assert when Write 0000000b (Prohitbited Value) to TCR Register
+# [ t =        571 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =        571 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =        571 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# ------------------------------------------ 
+# [ t =        571 ] WRITE data=32'h00000c00 to addr=12'h000 with strb=4'b0010 
+# >>> PASS <<<< | PSLVERR is assert when Write 0000000c (Prohitbited Value) to TCR Register
+# [ t =        731 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =        731 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =        731 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# ------------------------------------------ 
+# [ t =        731 ] WRITE data=32'h00000d00 to addr=12'h000 with strb=4'b0010 
+# >>> PASS <<<< | PSLVERR is assert when Write 0000000d (Prohitbited Value) to TCR Register
+# [ t =        891 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =        891 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =        891 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# ------------------------------------------ 
+# [ t =        891 ] WRITE data=32'h00000e00 to addr=12'h000 with strb=4'b0010 
+# >>> PASS <<<< | PSLVERR is assert when Write 0000000e (Prohitbited Value) to TCR Register
+# [ t =       1051 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =       1051 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =       1051 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# ------------------------------------------ 
+# [ t =       1051 ] WRITE data=32'h00000f00 to addr=12'h000 with strb=4'b0010 
+# >>> PASS <<<< | PSLVERR is assert when Write 0000000f (Prohitbited Value) to TCR Register
+# [ t =       1211 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =       1211 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =       1211 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[              Change div_val when timer_en = 1                ]============
+# =====================================================================================
+# ===== Set Timer Enable =====
+# [ t =       1211 ] WRITE data=32'h00000001 to addr=12'h000 with strb=4'b0001 
+# ===== Timer Enable = 1 now =====
+# [ t =       1291 ] WRITE data=32'h00000300 to addr=12'h000 with strb=4'b0010 
+# >>> PASS <<<< | PSLVERR is assert when Change div_val while timer_en = 1         16
+# [ t =       1451 ] READ at addr = 12'h000 , the rdata actual = 32'h00000101 
+# [ t =       1451 ] expect that rdata at addr=12'h000 is 32'h00000101 
+# [ t =       1451 ]    >>>  PASS <<<     |   rdata actual =32'h00000101   =  rdata expect =32'h00000101 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                 Change div_en when timer_en = 1             ]============
+# =====================================================================================
+# ===== Set Timer Enable =====
+# [ t =       1451 ] WRITE data=32'h00000001 to addr=12'h000 with strb=4'b0001 
+# ===== Timer Enable = 1 now =====
+# [ t =       1531 ] WRITE data=32'h00000003 to addr=12'h000 with strb=4'b0001 
+# >>> PASS <<<< | PSLVERR is assert when Change div_en while timer_en = 1         16
+# [ t =       1691 ] READ at addr = 12'h000 , the rdata actual = 32'h00000101 
+# [ t =       1691 ] expect that rdata at addr=12'h000 is 32'h00000101 
+# [ t =       1691 ]    >>>  PASS <<<     |   rdata actual =32'h00000101   =  rdata expect =32'h00000101 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                        TEST : PASS ALL                       ]============
+# =====================================================================================
+# Test_result PASSED
+# -------------------------------------------------------------------------------------
+# [ t =       1791 ] TEST COMPLETE. Total Errors: 0
+# -------------------------------------------------------------------------------------
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 1791 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 19:56:47 on Dec 01,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

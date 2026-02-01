@@ -1,0 +1,390 @@
+# vsim -coverage -l 21_register_access.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit 21_register_access.ucdb; log -r /*;run -all" 
+# Start time: 19:56:30 on Dec 01,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit 21_register_access.ucdb
+#  log -r /*
+# run -all
+# ===============================================
+#         Pat name: Check Register Access       ]
+# ===============================================
+# =====================================================================================
+# =========[                             TCR Register                     ]============
+# =====================================================================================
+# [ t =        100 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b1111 
+# [ t =        251 ] READ at addr = 12'h000 , the rdata actual = 32'h00000000 
+# [ t =        251 ] expect that rdata at addr=12'h000 is 32'h00000000 
+# [ t =        251 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =        251 ] WRITE data=32'hfffff8ff to addr=12'h000 with strb=4'b1111 
+# [ t =        411 ] READ at addr = 12'h000 , the rdata actual = 32'h00000803 
+# [ t =        411 ] expect that rdata at addr=12'h000 is 32'h00000803 
+# [ t =        411 ]    >>>  PASS <<<     |   rdata actual =32'h00000803   =  rdata expect =32'h00000803 
+# -------------------------------------------------------------------------------------
+# [ t =        411 ] WRITE data=32'hffffffff to addr=12'h000 with strb=4'b1111 
+# [ t =        571 ] READ at addr = 12'h000 , the rdata actual = 32'h00000803 
+# [ t =        571 ] expect that rdata at addr=12'h000 is 32'h00000803 
+# [ t =        571 ]    >>>  PASS <<<     |   rdata actual =32'h00000803   =  rdata expect =32'h00000803 
+# -------------------------------------------------------------------------------------
+# [ t =        571 ] WRITE data=32'haaaaaaaa to addr=12'h000 with strb=4'b1111 
+# [ t =        731 ] READ at addr = 12'h000 , the rdata actual = 32'h00000803 
+# [ t =        731 ] expect that rdata at addr=12'h000 is 32'h00000803 
+# [ t =        731 ]    >>>  PASS <<<     |   rdata actual =32'h00000803   =  rdata expect =32'h00000803 
+# -------------------------------------------------------------------------------------
+# [ t =        731 ] WRITE data=32'h00000603 to addr=12'h000 with strb=4'b1111 
+# [ t =        891 ] READ at addr = 12'h000 , the rdata actual = 32'h00000803 
+# [ t =        891 ] expect that rdata at addr=12'h000 is 32'h00000803 
+# [ t =        891 ]    >>>  PASS <<<     |   rdata actual =32'h00000803   =  rdata expect =32'h00000803 
+# -------------------------------------------------------------------------------------
+# [ t =        891 ] WRITE data=32'h00000801 to addr=12'h000 with strb=4'b1111 
+# [ t =       1051 ] READ at addr = 12'h000 , the rdata actual = 32'h00000803 
+# [ t =       1051 ] expect that rdata at addr=12'h000 is 32'h00000803 
+# [ t =       1051 ]    >>>  PASS <<<     |   rdata actual =32'h00000803   =  rdata expect =32'h00000803 
+# -------------------------------------------------------------------------------------
+# [ t =       1051 ] WRITE data=32'h00000903 to addr=12'h000 with strb=4'b1111 
+# [ t =       1211 ] READ at addr = 12'h000 , the rdata actual = 32'h00000803 
+# [ t =       1211 ] expect that rdata at addr=12'h000 is 32'h00000803 
+# [ t =       1211 ]    >>>  PASS <<<     |   rdata actual =32'h00000803   =  rdata expect =32'h00000803 
+# -------------------------------------------------------------------------------------
+# [ t =       1211 ] WRITE data=32'h00000802 to addr=12'h000 with strb=4'b1111 
+# [ t =       1371 ] READ at addr = 12'h000 , the rdata actual = 32'h00000802 
+# [ t =       1371 ] expect that rdata at addr=12'h000 is 32'h00000802 
+# [ t =       1371 ]    >>>  PASS <<<     |   rdata actual =32'h00000802   =  rdata expect =32'h00000802 
+# -------------------------------------------------------------------------------------
+# [ t =       1371 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b1111 
+# [ t =       1531 ] READ at addr = 12'h000 , the rdata actual = 32'h00000000 
+# [ t =       1531 ] expect that rdata at addr=12'h000 is 32'h00000000 
+# [ t =       1531 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       1531 ] WRITE data=32'h00000202 to addr=12'h000 with strb=4'b1111 
+# [ t =       1691 ] READ at addr = 12'h000 , the rdata actual = 32'h00000202 
+# [ t =       1691 ] expect that rdata at addr=12'h000 is 32'h00000202 
+# [ t =       1691 ]    >>>  PASS <<<     |   rdata actual =32'h00000202   =  rdata expect =32'h00000202 
+# -------------------------------------------------------------------------------------
+# [ t =       1691 ] WRITE data=32'h00000203 to addr=12'h000 with strb=4'b1111 
+# [ t =       1851 ] READ at addr = 12'h000 , the rdata actual = 32'h00000203 
+# [ t =       1851 ] expect that rdata at addr=12'h000 is 32'h00000203 
+# [ t =       1851 ]    >>>  PASS <<<     |   rdata actual =32'h00000203   =  rdata expect =32'h00000203 
+# -------------------------------------------------------------------------------------
+# [ t =       1851 ] WRITE data=32'h00000202 to addr=12'h000 with strb=4'b1111 
+# [ t =       2011 ] READ at addr = 12'h000 , the rdata actual = 32'h00000202 
+# [ t =       2011 ] expect that rdata at addr=12'h000 is 32'h00000202 
+# [ t =       2011 ]    >>>  PASS <<<     |   rdata actual =32'h00000202   =  rdata expect =32'h00000202 
+# -------------------------------------------------------------------------------------
+# [ t =       2011 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b1111 
+# [ t =       2171 ] READ at addr = 12'h000 , the rdata actual = 32'h00000000 
+# [ t =       2171 ] expect that rdata at addr=12'h000 is 32'h00000000 
+# [ t =       2171 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       2171 ] WRITE data=32'h00000001 to addr=12'h000 with strb=4'b1111 
+# [ t =       2331 ] READ at addr = 12'h000 , the rdata actual = 32'h00000001 
+# [ t =       2331 ] expect that rdata at addr=12'h000 is 32'h00000001 
+# [ t =       2331 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# [ t =       2331 ] WRITE data=32'h00000002 to addr=12'h000 with strb=4'b1111 
+# [ t =       2491 ] READ at addr = 12'h000 , the rdata actual = 32'h00000001 
+# [ t =       2491 ] expect that rdata at addr=12'h000 is 32'h00000001 
+# [ t =       2491 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# [ t =       2491 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b1111 
+# [ t =       2651 ] READ at addr = 12'h000 , the rdata actual = 32'h00000000 
+# [ t =       2651 ] expect that rdata at addr=12'h000 is 32'h00000000 
+# [ t =       2651 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       2651 ] WRITE data=32'h00000002 to addr=12'h000 with strb=4'b1111 
+# [ t =       2811 ] READ at addr = 12'h000 , the rdata actual = 32'h00000002 
+# [ t =       2811 ] expect that rdata at addr=12'h000 is 32'h00000002 
+# [ t =       2811 ]    >>>  PASS <<<     |   rdata actual =32'h00000002   =  rdata expect =32'h00000002 
+# -------------------------------------------------------------------------------------
+# [ t =       2811 ] WRITE data=32'h00000003 to addr=12'h000 with strb=4'b1111 
+# [ t =       2971 ] READ at addr = 12'h000 , the rdata actual = 32'h00000003 
+# [ t =       2971 ] expect that rdata at addr=12'h000 is 32'h00000003 
+# [ t =       2971 ]    >>>  PASS <<<     |   rdata actual =32'h00000003   =  rdata expect =32'h00000003 
+# -------------------------------------------------------------------------------------
+# [ t =       2971 ] WRITE data=32'h00000200 to addr=12'h000 with strb=4'b1111 
+# [ t =       3131 ] READ at addr = 12'h000 , the rdata actual = 32'h00000003 
+# [ t =       3131 ] expect that rdata at addr=12'h000 is 32'h00000003 
+# [ t =       3131 ]    >>>  PASS <<<     |   rdata actual =32'h00000003   =  rdata expect =32'h00000003 
+# -------------------------------------------------------------------------------------
+# [ t =       3131 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b1111 
+# [ t =       3291 ] READ at addr = 12'h000 , the rdata actual = 32'h00000002 
+# [ t =       3291 ] expect that rdata at addr=12'h000 is 32'h00000002 
+# [ t =       3291 ]    >>>  PASS <<<     |   rdata actual =32'h00000002   =  rdata expect =32'h00000002 
+# -------------------------------------------------------------------------------------
+# [ t =       3291 ] WRITE data=32'h00000001 to addr=12'h000 with strb=4'b1111 
+# [ t =       3451 ] READ at addr = 12'h000 , the rdata actual = 32'h00000001 
+# [ t =       3451 ] expect that rdata at addr=12'h000 is 32'h00000001 
+# [ t =       3451 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# [ t =       3451 ] WRITE data=32'h11110100 to addr=12'h000 with strb=4'b1111 
+# [ t =       3611 ] READ at addr = 12'h000 , the rdata actual = 32'h00000001 
+# [ t =       3611 ] expect that rdata at addr=12'h000 is 32'h00000001 
+# [ t =       3611 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# [ t =       3611 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b1111 
+# [ t =       3771 ] READ at addr = 12'h000 , the rdata actual = 32'h00000000 
+# [ t =       3771 ] expect that rdata at addr=12'h000 is 32'h00000000 
+# [ t =       3771 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       3771 ] WRITE data=32'h11110100 to addr=12'h000 with strb=4'b1111 
+# [ t =       3931 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =       3931 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =       3931 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# [ t =       3931 ] WRITE data=32'h11110101 to addr=12'h000 with strb=4'b1111 
+# [ t =       4091 ] READ at addr = 12'h000 , the rdata actual = 32'h00000101 
+# [ t =       4091 ] expect that rdata at addr=12'h000 is 32'h00000101 
+# [ t =       4091 ]    >>>  PASS <<<     |   rdata actual =32'h00000101   =  rdata expect =32'h00000101 
+# -------------------------------------------------------------------------------------
+# [ t =       4091 ] WRITE data=32'h11110100 to addr=12'h000 with strb=4'b1111 
+# [ t =       4251 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =       4251 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =       4251 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                            TDR0 Register                     ]============
+# =====================================================================================
+# [ t =       4251 ] WRITE data=32'h00000000 to addr=12'h004 with strb=4'b1111 
+# [ t =       4411 ] READ at addr = 12'h004 , the rdata actual = 32'h00000000 
+# [ t =       4411 ] expect that rdata at addr=12'h004 is 32'h00000000 
+# [ t =       4411 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       4411 ] WRITE data=32'h55555555 to addr=12'h004 with strb=4'b1111 
+# [ t =       4571 ] READ at addr = 12'h004 , the rdata actual = 32'h55555555 
+# [ t =       4571 ] expect that rdata at addr=12'h004 is 32'h55555555 
+# [ t =       4571 ]    >>>  PASS <<<     |   rdata actual =32'h55555555   =  rdata expect =32'h55555555 
+# -------------------------------------------------------------------------------------
+# [ t =       4571 ] WRITE data=32'haaaaaaaa to addr=12'h004 with strb=4'b1111 
+# [ t =       4731 ] READ at addr = 12'h004 , the rdata actual = 32'haaaaaaaa 
+# [ t =       4731 ] expect that rdata at addr=12'h004 is 32'haaaaaaaa 
+# [ t =       4731 ]    >>>  PASS <<<     |   rdata actual =32'haaaaaaaa   =  rdata expect =32'haaaaaaaa 
+# -------------------------------------------------------------------------------------
+# [ t =       4731 ] WRITE data=32'hffffffff to addr=12'h004 with strb=4'b1111 
+# [ t =       4891 ] READ at addr = 12'h004 , the rdata actual = 32'hffffffff 
+# [ t =       4891 ] expect that rdata at addr=12'h004 is 32'hffffffff 
+# [ t =       4891 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hffffffff 
+# -------------------------------------------------------------------------------------
+# [ t =       4891 ] WRITE data=32'ha555555a to addr=12'h004 with strb=4'b1111 
+# [ t =       5051 ] READ at addr = 12'h004 , the rdata actual = 32'ha555555a 
+# [ t =       5051 ] expect that rdata at addr=12'h004 is 32'ha555555a 
+# [ t =       5051 ]    >>>  PASS <<<     |   rdata actual =32'ha555555a   =  rdata expect =32'ha555555a 
+# -------------------------------------------------------------------------------------
+# [ t =       5051 ] WRITE data=32'haa5aa5aa to addr=12'h004 with strb=4'b1111 
+# [ t =       5211 ] READ at addr = 12'h004 , the rdata actual = 32'haa5aa5aa 
+# [ t =       5211 ] expect that rdata at addr=12'h004 is 32'haa5aa5aa 
+# [ t =       5211 ]    >>>  PASS <<<     |   rdata actual =32'haa5aa5aa   =  rdata expect =32'haa5aa5aa 
+# -------------------------------------------------------------------------------------
+# [ t =       5211 ] WRITE data=32'ha55aa55a to addr=12'h004 with strb=4'b1111 
+# [ t =       5371 ] READ at addr = 12'h004 , the rdata actual = 32'ha55aa55a 
+# [ t =       5371 ] expect that rdata at addr=12'h004 is 32'ha55aa55a 
+# [ t =       5371 ]    >>>  PASS <<<     |   rdata actual =32'ha55aa55a   =  rdata expect =32'ha55aa55a 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                            TDR1 Register                     ]============
+# =====================================================================================
+# [ t =       5371 ] WRITE data=32'h00000000 to addr=12'h008 with strb=4'b1111 
+# [ t =       5531 ] READ at addr = 12'h008 , the rdata actual = 32'h00000000 
+# [ t =       5531 ] expect that rdata at addr=12'h008 is 32'h00000000 
+# [ t =       5531 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       5531 ] WRITE data=32'h55555555 to addr=12'h008 with strb=4'b1111 
+# [ t =       5691 ] READ at addr = 12'h008 , the rdata actual = 32'h55555555 
+# [ t =       5691 ] expect that rdata at addr=12'h008 is 32'h55555555 
+# [ t =       5691 ]    >>>  PASS <<<     |   rdata actual =32'h55555555   =  rdata expect =32'h55555555 
+# -------------------------------------------------------------------------------------
+# [ t =       5691 ] WRITE data=32'haaaaaaaa to addr=12'h008 with strb=4'b1111 
+# [ t =       5851 ] READ at addr = 12'h008 , the rdata actual = 32'haaaaaaaa 
+# [ t =       5851 ] expect that rdata at addr=12'h008 is 32'haaaaaaaa 
+# [ t =       5851 ]    >>>  PASS <<<     |   rdata actual =32'haaaaaaaa   =  rdata expect =32'haaaaaaaa 
+# -------------------------------------------------------------------------------------
+# [ t =       5851 ] WRITE data=32'hffffffff to addr=12'h008 with strb=4'b1111 
+# [ t =       6011 ] READ at addr = 12'h008 , the rdata actual = 32'hffffffff 
+# [ t =       6011 ] expect that rdata at addr=12'h008 is 32'hffffffff 
+# [ t =       6011 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hffffffff 
+# -------------------------------------------------------------------------------------
+# [ t =       6011 ] WRITE data=32'h00000000 to addr=12'h008 with strb=4'b1111 
+# [ t =       6171 ] READ at addr = 12'h008 , the rdata actual = 32'h00000000 
+# [ t =       6171 ] expect that rdata at addr=12'h008 is 32'h00000000 
+# [ t =       6171 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       6171 ] WRITE data=32'ha555555a to addr=12'h008 with strb=4'b1111 
+# [ t =       6331 ] READ at addr = 12'h008 , the rdata actual = 32'ha555555a 
+# [ t =       6331 ] expect that rdata at addr=12'h008 is 32'ha555555a 
+# [ t =       6331 ]    >>>  PASS <<<     |   rdata actual =32'ha555555a   =  rdata expect =32'ha555555a 
+# -------------------------------------------------------------------------------------
+# [ t =       6331 ] WRITE data=32'haa5aa5aa to addr=12'h008 with strb=4'b1111 
+# [ t =       6491 ] READ at addr = 12'h008 , the rdata actual = 32'haa5aa5aa 
+# [ t =       6491 ] expect that rdata at addr=12'h008 is 32'haa5aa5aa 
+# [ t =       6491 ]    >>>  PASS <<<     |   rdata actual =32'haa5aa5aa   =  rdata expect =32'haa5aa5aa 
+# -------------------------------------------------------------------------------------
+# [ t =       6491 ] WRITE data=32'h5555aaaa to addr=12'h008 with strb=4'b1111 
+# [ t =       6651 ] READ at addr = 12'h008 , the rdata actual = 32'h5555aaaa 
+# [ t =       6651 ] expect that rdata at addr=12'h008 is 32'h5555aaaa 
+# [ t =       6651 ]    >>>  PASS <<<     |   rdata actual =32'h5555aaaa   =  rdata expect =32'h5555aaaa 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                           TCMP0 Register                     ]============
+# =====================================================================================
+# [ t =       6651 ] WRITE data=32'h00000000 to addr=12'h00c with strb=4'b1111 
+# [ t =       6811 ] READ at addr = 12'h00c , the rdata actual = 32'h00000000 
+# [ t =       6811 ] expect that rdata at addr=12'h00c is 32'h00000000 
+# [ t =       6811 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       6811 ] WRITE data=32'h55555555 to addr=12'h00c with strb=4'b1111 
+# [ t =       6971 ] READ at addr = 12'h00c , the rdata actual = 32'h55555555 
+# [ t =       6971 ] expect that rdata at addr=12'h00c is 32'h55555555 
+# [ t =       6971 ]    >>>  PASS <<<     |   rdata actual =32'h55555555   =  rdata expect =32'h55555555 
+# -------------------------------------------------------------------------------------
+# [ t =       6971 ] WRITE data=32'haaaaaaaa to addr=12'h00c with strb=4'b1111 
+# [ t =       7131 ] READ at addr = 12'h00c , the rdata actual = 32'haaaaaaaa 
+# [ t =       7131 ] expect that rdata at addr=12'h00c is 32'haaaaaaaa 
+# [ t =       7131 ]    >>>  PASS <<<     |   rdata actual =32'haaaaaaaa   =  rdata expect =32'haaaaaaaa 
+# -------------------------------------------------------------------------------------
+# [ t =       7131 ] WRITE data=32'hffffffff to addr=12'h00c with strb=4'b1111 
+# [ t =       7291 ] READ at addr = 12'h00c , the rdata actual = 32'hffffffff 
+# [ t =       7291 ] expect that rdata at addr=12'h00c is 32'hffffffff 
+# [ t =       7291 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hffffffff 
+# -------------------------------------------------------------------------------------
+# [ t =       7291 ] WRITE data=32'ha555555a to addr=12'h00c with strb=4'b1111 
+# [ t =       7451 ] READ at addr = 12'h00c , the rdata actual = 32'ha555555a 
+# [ t =       7451 ] expect that rdata at addr=12'h00c is 32'ha555555a 
+# [ t =       7451 ]    >>>  PASS <<<     |   rdata actual =32'ha555555a   =  rdata expect =32'ha555555a 
+# -------------------------------------------------------------------------------------
+# [ t =       7451 ] WRITE data=32'haa5aa5aa to addr=12'h00c with strb=4'b1111 
+# [ t =       7611 ] READ at addr = 12'h00c , the rdata actual = 32'haa5aa5aa 
+# [ t =       7611 ] expect that rdata at addr=12'h00c is 32'haa5aa5aa 
+# [ t =       7611 ]    >>>  PASS <<<     |   rdata actual =32'haa5aa5aa   =  rdata expect =32'haa5aa5aa 
+# -------------------------------------------------------------------------------------
+# [ t =       7611 ] WRITE data=32'ha55aa55a to addr=12'h00c with strb=4'b1111 
+# [ t =       7771 ] READ at addr = 12'h00c , the rdata actual = 32'ha55aa55a 
+# [ t =       7771 ] expect that rdata at addr=12'h00c is 32'ha55aa55a 
+# [ t =       7771 ]    >>>  PASS <<<     |   rdata actual =32'ha55aa55a   =  rdata expect =32'ha55aa55a 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                           TCMP1 Register                     ]============
+# =====================================================================================
+# [ t =       7771 ] WRITE data=32'h00000000 to addr=12'h010 with strb=4'b1111 
+# [ t =       7931 ] READ at addr = 12'h010 , the rdata actual = 32'h00000000 
+# [ t =       7931 ] expect that rdata at addr=12'h010 is 32'h00000000 
+# [ t =       7931 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       7931 ] WRITE data=32'h55555555 to addr=12'h010 with strb=4'b1111 
+# [ t =       8091 ] READ at addr = 12'h010 , the rdata actual = 32'h55555555 
+# [ t =       8091 ] expect that rdata at addr=12'h010 is 32'h55555555 
+# [ t =       8091 ]    >>>  PASS <<<     |   rdata actual =32'h55555555   =  rdata expect =32'h55555555 
+# -------------------------------------------------------------------------------------
+# [ t =       8091 ] WRITE data=32'haaaaaaaa to addr=12'h010 with strb=4'b1111 
+# [ t =       8251 ] READ at addr = 12'h010 , the rdata actual = 32'haaaaaaaa 
+# [ t =       8251 ] expect that rdata at addr=12'h010 is 32'haaaaaaaa 
+# [ t =       8251 ]    >>>  PASS <<<     |   rdata actual =32'haaaaaaaa   =  rdata expect =32'haaaaaaaa 
+# -------------------------------------------------------------------------------------
+# [ t =       8251 ] WRITE data=32'hffffffff to addr=12'h010 with strb=4'b1111 
+# [ t =       8411 ] READ at addr = 12'h010 , the rdata actual = 32'hffffffff 
+# [ t =       8411 ] expect that rdata at addr=12'h010 is 32'hffffffff 
+# [ t =       8411 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hffffffff 
+# -------------------------------------------------------------------------------------
+# [ t =       8411 ] WRITE data=32'ha555555a to addr=12'h010 with strb=4'b1111 
+# [ t =       8571 ] READ at addr = 12'h010 , the rdata actual = 32'ha555555a 
+# [ t =       8571 ] expect that rdata at addr=12'h010 is 32'ha555555a 
+# [ t =       8571 ]    >>>  PASS <<<     |   rdata actual =32'ha555555a   =  rdata expect =32'ha555555a 
+# -------------------------------------------------------------------------------------
+# [ t =       8571 ] WRITE data=32'haa5aa5aa to addr=12'h010 with strb=4'b1111 
+# [ t =       8731 ] READ at addr = 12'h010 , the rdata actual = 32'haa5aa5aa 
+# [ t =       8731 ] expect that rdata at addr=12'h010 is 32'haa5aa5aa 
+# [ t =       8731 ]    >>>  PASS <<<     |   rdata actual =32'haa5aa5aa   =  rdata expect =32'haa5aa5aa 
+# -------------------------------------------------------------------------------------
+# [ t =       8731 ] WRITE data=32'ha55aa55a to addr=12'h010 with strb=4'b1111 
+# [ t =       8891 ] READ at addr = 12'h010 , the rdata actual = 32'ha55aa55a 
+# [ t =       8891 ] expect that rdata at addr=12'h010 is 32'ha55aa55a 
+# [ t =       8891 ]    >>>  PASS <<<     |   rdata actual =32'ha55aa55a   =  rdata expect =32'ha55aa55a 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                           TIER Register                      ]============
+# =====================================================================================
+# [ t =       8891 ] WRITE data=32'h00000000 to addr=12'h014 with strb=4'b1111 
+# [ t =       9051 ] READ at addr = 12'h014 , the rdata actual = 32'h00000000 
+# [ t =       9051 ] expect that rdata at addr=12'h014 is 32'h00000000 
+# [ t =       9051 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       9051 ] WRITE data=32'h55555555 to addr=12'h014 with strb=4'b1111 
+# [ t =       9211 ] READ at addr = 12'h014 , the rdata actual = 32'h00000001 
+# [ t =       9211 ] expect that rdata at addr=12'h014 is 32'h00000001 
+# [ t =       9211 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# [ t =       9211 ] WRITE data=32'haaaaaaaa to addr=12'h014 with strb=4'b1111 
+# [ t =       9371 ] READ at addr = 12'h014 , the rdata actual = 32'h00000000 
+# [ t =       9371 ] expect that rdata at addr=12'h014 is 32'h00000000 
+# [ t =       9371 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       9371 ] WRITE data=32'hffffffff to addr=12'h014 with strb=4'b1111 
+# [ t =       9531 ] READ at addr = 12'h014 , the rdata actual = 32'h00000001 
+# [ t =       9531 ] expect that rdata at addr=12'h014 is 32'h00000001 
+# [ t =       9531 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                           TISR Register                      ]============
+# =====================================================================================
+# [ t =       9531 ] WRITE data=32'h00000000 to addr=12'h018 with strb=4'b1111 
+# [ t =       9691 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =       9691 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =       9691 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       9691 ] WRITE data=32'h55555555 to addr=12'h018 with strb=4'b1111 
+# [ t =       9851 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =       9851 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =       9851 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =       9851 ] WRITE data=32'haaaaaaaa to addr=12'h018 with strb=4'b1111 
+# [ t =      10011 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =      10011 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =      10011 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =      10011 ] WRITE data=32'hffffffff to addr=12'h018 with strb=4'b1111 
+# [ t =      10171 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =      10171 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =      10171 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                           THCSR Register                     ]============
+# =====================================================================================
+# [ t =      10171 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b1111 
+# [ t =      10331 ] READ at addr = 12'h01c , the rdata actual = 32'h00000000 
+# [ t =      10331 ] expect that rdata at addr=12'h01c is 32'h00000000 
+# [ t =      10331 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =      10331 ] WRITE data=32'haaaaaaaa to addr=12'h01c with strb=4'b1111 
+# [ t =      10491 ] READ at addr = 12'h01c , the rdata actual = 32'h00000000 
+# [ t =      10491 ] expect that rdata at addr=12'h01c is 32'h00000000 
+# [ t =      10491 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =      10491 ] WRITE data=32'hffffffff to addr=12'h01c with strb=4'b1111 
+# [ t =      10651 ] READ at addr = 12'h01c , the rdata actual = 32'h00000001 
+# [ t =      10651 ] expect that rdata at addr=12'h01c is 32'h00000001 
+# [ t =      10651 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                        TEST : PASS ALL                   ]============
+# =====================================================================================
+# Test_result PASSED
+# -------------------------------------------------------------------------------------
+# [ t =      10751 ] TEST COMPLETE. Total Errors: 0
+# -------------------------------------------------------------------------------------
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 10751 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 19:56:31 on Dec 01,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

@@ -1,0 +1,4 @@
+BEGIN 1:apb_reg_cnt:fast:work
+    cnt_en :  1:test_bench:fast:work
+    cnt_64b :  1:test_bench:fast:work
+END 

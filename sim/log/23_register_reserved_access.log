@@ -1,0 +1,51 @@
+# vsim -coverage -l 23_register_reserved_access.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit 23_register_reserved_access.ucdb; log -r /*;run -all" 
+# Start time: 19:56:34 on Dec 01,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit 23_register_reserved_access.ucdb
+#  log -r /*
+# run -all
+# ===============================================
+#         Pat name: Check Register Reserved      ]
+# ===============================================
+# [ t =        100 ] WRITE data=32'hffffffff to addr=12'h100 with strb=4'b1111 
+# [ t =        251 ] READ at addr = 12'h100 , the rdata actual = 32'h00000000 
+# [ t =        251 ] expect that rdata at addr=12'h100 is 32'h00000000 
+# [ t =        251 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =        251 ] WRITE data=32'hffffffff to addr=12'h595 with strb=4'b1111 
+# [ t =        411 ] READ at addr = 12'h595 , the rdata actual = 32'h00000000 
+# [ t =        411 ] expect that rdata at addr=12'h595 is 32'h00000000 
+# [ t =        411 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# [ t =        411 ] WRITE data=32'hffffffff to addr=12'h3fc with strb=4'b1111 
+# [ t =        571 ] READ at addr = 12'h3fc , the rdata actual = 32'h00000000 
+# [ t =        571 ] expect that rdata at addr=12'h3fc is 32'h00000000 
+# [ t =        571 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                        TEST : PASS ALL                       ]============
+# =====================================================================================
+# Test_result PASSED
+# -------------------------------------------------------------------------------------
+# [ t =        671 ] TEST COMPLETE. Total Errors: 0
+# -------------------------------------------------------------------------------------
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 671 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 19:56:35 on Dec 01,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

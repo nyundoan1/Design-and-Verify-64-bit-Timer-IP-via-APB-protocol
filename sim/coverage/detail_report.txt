@@ -1,0 +1,653 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /test_bench
+=== Design Unit: work.test_bench
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                       100        58        42    58.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /test_bench
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/test_bench.v
+------------------------------------IF Branch------------------------------------
+    229                                      165     Count coming in to IF
+    229             1                        165         if(exp_cnt === actual_cnt)
+    231             1                    ***0***         else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+
+  File run_test.v
+------------------------------------IF Branch------------------------------------
+    20                                        77     Count coming in to IF
+    20              1                         77     	$display("CNT before halt: %d (64'h%h)",cnt_before,cnt_before);
+    22              1                    ***0***     	$display("Wait for some cycle  ............................................. ");
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    21                                        11     Count coming in to IF
+    21              1                         11     	repeat (80) @(posedge clk);
+    25              1                    ***0***     	
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    23                                        11     Count coming in to IF
+    23              1                         11     	cnt_after = test_bench.timer_top_dut.u_apb_reg_cnt.cnt_64b;#1;
+    24              1                    ***0***     	$display("CNT after halt: %d (64'h%h)",cnt_after,cnt_after);
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    24                                        11     Count coming in to IF
+    24              1                         11     	$display("CNT after halt: %d (64'h%h)",cnt_after,cnt_after);
+    28              1                    ***0***     	end else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    26                                        11     Count coming in to IF
+    26              1                         11     	if (cnt_after != cnt_before) begin
+    28              1                    ***0***     	end else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    31                                        11     Count coming in to IF
+    31              1                         11     	end
+    33              1                    ***0***     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    33                                        11     Count coming in to IF
+    33              1                         11     
+    34              1                    ***0***     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    34                                        11     Count coming in to IF
+    34              1                         11     
+    36              1                    ***0***     	$display("\n[A2] ====> halt_req = 1 & dbg_mode = 1  <=======");
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    37                                        22     Count coming in to IF
+    37              1                         22     	// Reset states
+    41              1                    ***0***     	apb_write(ADDR_TCR, 32'h1, 4'b0001); // timer_en=1, div_en=0
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    39                                        11     Count coming in to IF
+    39              1                         11     	apb_write(ADDR_THCSR, 32'h0, 4'b0001);
+    41              1                    ***0***     	apb_write(ADDR_TCR, 32'h1, 4'b0001); // timer_en=1, div_en=0
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    41                                        11     Count coming in to IF
+    41              1                         11     	apb_write(ADDR_TCR, 32'h1, 4'b0001); // timer_en=1, div_en=0
+    45              1                    ***0***     	$display("CNT before halt: %d (64'h%h)",cnt_before,cnt_before);
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    44                                        22     Count coming in to IF
+    44              1                         22     	cnt_before = test_bench.timer_top_dut.u_apb_reg_cnt.cnt_64b;#1;
+    48              1                    ***0***     	$display("Wait for some cycle  ............................................. ");
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    47                                        11     Count coming in to IF
+    47              1                         11     	repeat (60) @(posedge clk);
+    49              1                    ***0***     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    51                                        11     Count coming in to IF
+    51              1                         11     	$display("CNT after halt: %d (64'h%h)",cnt_after,cnt_after);
+    53              1                    ***0***     	if (cnt_after === cnt_before) begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    53                                        22     Count coming in to IF
+    53              1                         22     	if (cnt_after === cnt_before) begin
+    57              1                    ***0***     	err_num = err_num + 1;
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    54                                        11     Count coming in to IF
+    54              1                         11     	$display("PASS: Counter HALTED correctly in dbg_mode=1");
+    56              1                    ***0***     	$display("FAIL: Counter still incrementing in dbg_mode=1!");
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    57                                        11     Count coming in to IF
+    57              1                         11     	err_num = err_num + 1;
+    59              1                    ***0***     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    61                                        11     Count coming in to IF
+    61              1                         11     	$display("\n[A3] ======> Clear halt_req → counter resumes  <======");
+    63              1                    ***0***     	apb_write(ADDR_THCSR, 32'h0, 4'b0001); // clear halt
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    63                                        11     Count coming in to IF
+    63              1                         11     	apb_write(ADDR_THCSR, 32'h0, 4'b0001); // clear halt
+    65              1                    ***0***     	$display("Wait for some cycle  ............................................. ");
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    67                                        11     Count coming in to IF
+    67              1                         11     	$display("CNT after clear THCSR.halt_req a few cycle: %d (64'h%h)",cnt_after2,cnt_after2);
+    71              1                    ***0***     		$display("FAIL: Counter did NOT resume\n");
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    68                                        11     Count coming in to IF
+    68              1                         11     	if (cnt_after2 > cnt_after) begin
+    70              1                    ***0***     	end else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    70                                        11     Count coming in to IF
+    70              1                         11     	end else begin
+    72              1                    ***0***     		err_num = err_num + 1;
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    77                                        11     Count coming in to IF
+    77              1                         11     	// --------------------------------------------------------
+    79              1                    ***0***     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    104                                       99     Count coming in to IF
+    104             1                         99     		if (cnt_after != cnt_before) begin
+    106             1                    ***0***     		end else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    107                                       11     Count coming in to IF
+    107             1                         11     			$display("FAIL: Counter STOPS in DBG=0 (div mode)");
+    109             1                    ***0***     		end
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    117                                       11     Count coming in to IF
+    117             1                         11     
+    119             1                    ***0***     		apb_write(ADDR_TDR1, 32'h11223344, 4'b1111);
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    126                                       11     Count coming in to IF
+    126             1                         11     		$display("CNT before halt: %d (64'h%h)\n",cnt_before,cnt_before);
+    128             1                    ***0***     		safe_wait = (div + 1) * 400;
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    132                                       11     Count coming in to IF
+    132             1                         11     		cnt_after = test_bench.timer_top_dut.u_apb_reg_cnt.cnt_64b;#1;
+    136             1                    ***0***     			$display("PASS: Counter HALTED (div_mode)");
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    135                                       99     Count coming in to IF
+    135             1                         99     		if (cnt_after === cnt_before) begin
+    137             1                    ***0***     		end else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    142                                       11     Count coming in to IF
+    142             1                         11     
+    144             1                    ***0***     		apb_write(ADDR_THCSR, 32'h0, 4'b0001);
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    153                                       99     Count coming in to IF
+    153             1                         99     		if (cnt_after2 > cnt_after) begin
+    155             1                    ***0***     		end else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    163                                       11     Count coming in to IF
+    163             1                         11     	if(test_bench.err_num == 0 ) begin
+    167             1                    ***0***     	end else begin 
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    173                                       11     Count coming in to IF
+    173             1                         11     	if(!test_bench.err_num)
+    175             1                    ***0***     	else 
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    258                                        1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    268                                        1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    283                                        1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    284                                       11     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    293                                        1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    294                                       11     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    296                                        1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    306                                        1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                      25         3        22    12.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_bench --
+
+  File ../tb/test_bench.v
+
+----------------Focused Condition View-------------------
+Line       229 Item    1  (exp_cnt === actual_cnt)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                Input Term   Covered  Reason for no coverage   Hint
+               -----------  --------  -----------------------  --------------
+  (exp_cnt === actual_cnt)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                  Non-masking condition(s)      
+ ---------  ---------  --------------------        -------------------------     
+  Row   1:    ***0***  (exp_cnt === actual_cnt)_0  -                             
+  Row   2:         33  (exp_cnt === actual_cnt)_1  -                             
+
+
+----------------Focused Condition View-------------------
+Line       21 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         11  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       24 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         11  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       26 Item    1  (cnt_after != cnt_before)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                 Input Term   Covered  Reason for no coverage   Hint
+                -----------  --------  -----------------------  --------------
+  (cnt_after != cnt_before)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                   Non-masking condition(s)      
+ ---------  ---------  --------------------         -------------------------     
+  Row   1:    ***0***  (cnt_after != cnt_before)_0  -                             
+  Row   2:         11  (cnt_after != cnt_before)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       33 Item    1  (reg_cnt == 'h000000000000000f)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                       Input Term   Covered  Reason for no coverage   Hint
+                      -----------  --------  -----------------------  --------------
+  (reg_cnt == 'h000000000000000f)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                         Non-masking condition(s)      
+ ---------  ---------  --------------------               -------------------------     
+  Row   1:    ***0***  (reg_cnt == 'h000000000000000f)_0  -                             
+  Row   2:         11  (reg_cnt == 'h000000000000000f)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       37 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         11  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       41 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         11  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       44 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         11  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       53 Item    1  (cnt_after === cnt_before)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         22  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       67 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         11  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       68 Item    1  (cnt_after2 > cnt_after)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                Input Term   Covered  Reason for no coverage   Hint
+               -----------  --------  -----------------------  --------------
+  (cnt_after2 > cnt_after)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                  Non-masking condition(s)      
+ ---------  ---------  --------------------        -------------------------     
+  Row   1:    ***0***  (cnt_after2 > cnt_after)_0  -                             
+  Row   2:         11  (cnt_after2 > cnt_after)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       70 Item    1  (reg_rdata == 1)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (reg_rdata == 1)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (reg_rdata == 1)_0    -                             
+  Row   2:         11  (reg_rdata == 1)_1    -                             
+
+----------------Focused Condition View-------------------
+Line       104 Item    1  (cnt_after != cnt_before)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                 Input Term   Covered  Reason for no coverage   Hint
+                -----------  --------  -----------------------  --------------
+  (cnt_after != cnt_before)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                   Non-masking condition(s)      
+ ---------  ---------  --------------------         -------------------------     
+  Row   1:    ***0***  (cnt_after != cnt_before)_0  -                             
+  Row   2:         11  (cnt_after != cnt_before)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       126 Item    1  (reg_rdata == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (reg_rdata == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (reg_rdata == 0)_0    -                             
+  Row   2:         11  (reg_rdata == 0)_1    -                             
+
+----------------Focused Condition View-------------------
+Line       132 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         11  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       135 Item    1  (cnt_after === cnt_before)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                  Input Term   Covered  Reason for no coverage   Hint
+                 -----------  --------  -----------------------  --------------
+  (cnt_after === cnt_before)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                    Non-masking condition(s)      
+ ---------  ---------  --------------------          -------------------------     
+  Row   1:    ***0***  (cnt_after === cnt_before)_0  -                             
+  Row   2:         11  (cnt_after === cnt_before)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       153 Item    1  (cnt_after2 > cnt_after)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                Input Term   Covered  Reason for no coverage   Hint
+               -----------  --------  -----------------------  --------------
+  (cnt_after2 > cnt_after)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                  Non-masking condition(s)      
+ ---------  ---------  --------------------        -------------------------     
+  Row   1:    ***0***  (cnt_after2 > cnt_after)_0  -                             
+  Row   2:         11  (cnt_after2 > cnt_after)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       163 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         11  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       258 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:          1  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       283 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (err_num == 0)_0      -                             
+  Row   2:    ***0***  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       284 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (err_num == 0)_0      -                             
+  Row   2:         11  (err_num == 0)_1      -                             
+
+----------------Focused Condition View-------------------
+Line       296 Item    1  (err_num == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (err_num == 0)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (err_num == 0)_0      -                             
+  Row   2:    ***0***  (err_num == 0)_1      -                             
+
+
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                     453       450         3    99.33%
+
+================================Statement Details================================
+
+Statement Coverage for instance /test_bench --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/test_bench.v
+    232             1              $display("   >>> FAIL <<<");
+    233             1              err_num = err_num + 1;
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        244       180        64    73.77%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /test_bench --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                               clk         121         121      100.00 
+                                          dbg_mode          11          11      100.00 
+                                        err_num[0]           1           4      100.00 
+                                        err_num[1]           1           1      100.00 
+                                        err_num[2]           0           1       50.00 
+                                     err_num[3-31]           0           0        0.00 
+                                          paddr[0]          11          11      100.00 
+                                          paddr[1]           0           0        0.00 
+                                        paddr[2-3]         110         110      100.00 
+                                          paddr[4]          88          88      100.00 
+                                       paddr[5-10]          11          11      100.00 
+                                         paddr[11]           0           0        0.00 
+                                           penable         121         121      100.00 
+                                         prdata[0]          66          66      100.00 
+                                         prdata[1]          77          77      100.00 
+                                       prdata[2-6]          55          55      100.00 
+                                         prdata[7]          44          44      100.00 
+                                         prdata[8]          99          99      100.00 
+                                      prdata[9-10]          66          66      100.00 
+                                     prdata[11-14]          55          55      100.00 
+                                        prdata[15]          44          44      100.00 
+                                     prdata[16-18]          55          55      100.00 
+                                        prdata[19]          44          44      100.00 
+                                     prdata[20-22]          55          55      100.00 
+                                        prdata[23]          44          44      100.00 
+                                     prdata[24-26]          55          55      100.00 
+                                        prdata[27]          44          44      100.00 
+                                     prdata[28-30]          55          55      100.00 
+                                        prdata[31]          44          44      100.00 
+                                            pready         121         121      100.00 
+                                              psel         121         121      100.00 
+                                           pslverr          55          55      100.00 
+                                      pslverr_high          55          55      100.00 
+                                        pstrb[0-1]         110         110      100.00 
+                                        pstrb[2-3]          99          99      100.00 
+                                         pwdata[0]         110         110      100.00 
+                                         pwdata[1]          99          99      100.00 
+                                       pwdata[2-3]          77          77      100.00 
+                                       pwdata[4-7]          66          66      100.00 
+                                         pwdata[8]         110         110      100.00 
+                                      pwdata[9-11]          88          88      100.00 
+                                        pwdata[12]          77          77      100.00 
+                                     pwdata[13-14]          66          66      100.00 
+                                     pwdata[15-16]          55          55      100.00 
+                                        pwdata[17]          66          66      100.00 
+                                        pwdata[18]          77          77      100.00 
+                                        pwdata[19]          55          55      100.00 
+                                        pwdata[20]          66          66      100.00 
+                                        pwdata[21]          77          77      100.00 
+                                        pwdata[22]          66          66      100.00 
+                                        pwdata[23]          55          55      100.00 
+                                     pwdata[24-26]          66          66      100.00 
+                                        pwdata[27]          55          55      100.00 
+                                        pwdata[28]          77          77      100.00 
+                                        pwdata[29]          55          55      100.00 
+                                        pwdata[30]          66          66      100.00 
+                                        pwdata[31]          55          55      100.00 
+                                            pwrite         110         110      100.00 
+                                             rst_n           0         121       50.00 
+                                           tim_int          22          33      100.00 
+
+Total Node Count     =        122 
+Toggled Node Count   =         89 
+Untoggled Node Count =         33 
+
+Toggle Coverage      =      73.77% (180 of 244 bins)
+
+
+Total Coverage By Instance (filtered view): 53.29%
+

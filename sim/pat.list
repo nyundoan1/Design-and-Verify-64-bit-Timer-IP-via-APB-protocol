@@ -1,0 +1,11 @@
+1_initial_value
+21_register_access
+22_register_byte_access
+23_register_reserved_access
+24_register_one_hot
+31_counter_run
+32_counter_clear
+33_counter_after_interrupt
+4_interrupt_check
+5_apb_pslverr
+6_halt

@@ -1,0 +1,97 @@
+# vsim -coverage -l 4_interrupt_check.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit 4_interrupt_check.ucdb; log -r /*;run -all" 
+# Start time: 19:56:44 on Dec 01,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit 4_interrupt_check.ucdb
+#  log -r /*
+# run -all
+# =============================================
+# [         Pat name: Check Interrupt          ]
+# =============================================
+# ==============================================
+# =====[ Interrupt assert & hold pending ]======
+# ==============================================
+# ===== Set Value To TDR0, TDR1 =====
+# [ t =        100 ] WRITE data=32'hfffffff0 to addr=12'h004 with strb=4'b1111 
+# [ t =        171 ] WRITE data=32'hffffffff to addr=12'h008 with strb=4'b1111 
+# [ t =        331 ] READ at addr = 12'h004 , the rdata actual = 32'hfffffff0 
+# [ t =        411 ] READ at addr = 12'h008 , the rdata actual = 32'hffffffff 
+# ===== cnt_64b = ffff_ffff_ffff_fff0 =====
+# ===== Set Value To TCMP0, TCMP1 =====
+# [ t =        411 ] WRITE data=32'hfffffff0 to addr=12'h00c with strb=4'b1111 
+# [ t =        491 ] WRITE data=32'hffffffff to addr=12'h010 with strb=4'b1111 
+# [ t =        651 ] READ at addr = 12'h00c , the rdata actual = 32'hfffffff0 
+# [ t =        731 ] READ at addr = 12'h010 , the rdata actual = 32'hffffffff 
+# ===== cmp_64b = ffff_ffff_ffff_ffff =====
+# ===== Enable Interrupt =====
+# [ t =        731 ] WRITE data=32'h00000001 to addr=12'h014 with strb=4'b0001 
+# ===== Enable Counter =====
+# [ t =        811 ] WRITE data=32'h00000001 to addr=12'h000 with strb=4'b0001 
+# ===== Wait 16 cycle Timer Interrupt Is Asserted =====
+# >>> PASS <<< ==== Interrupt is asserted 1'b1 =====
+# ===== Wait for more cycles =====
+# >>> PASS <<< ==== Interrupt is still asserted 1'b1 =====
+# ==============================================
+# =====[    Interrupt Masking by TIER    ]======
+# ==============================================
+# ===== Disable Interrupt =====
+# [ t =       1151 ] WRITE data=32'h00000000 to addr=12'h014 with strb=4'b0001 
+# ===== Check Interrupt & Interrupt Status =====
+# >>> PASS <<< ==== Interrupt is deasserted => tim.int = 1'b0 =====
+# ===== Interrupt Status =====
+# [ t =       1311 ] READ at addr = 12'h018 , the rdata actual = 32'h00000001 
+# >>> PASS <<< ==== Interrupt status (TISR.int_st) is still = 1 =====
+# =================================================
+# ==[  RW1C clear both TISR.int_st & tim.int    ]==
+# =================================================
+# ===== Set Value To TDR0, TDR1 =====
+# [ t =       1311 ] WRITE data=32'h00000000 to addr=12'h004 with strb=4'b1111 
+# [ t =       1391 ] WRITE data=32'h0000000f to addr=12'h008 with strb=4'b1111 
+# [ t =       1551 ] READ at addr = 12'h004 , the rdata actual = 32'h00000008 
+# [ t =       1631 ] READ at addr = 12'h008 , the rdata actual = 32'h0000000f 
+# ===== cnt_64b = 0000_0000_0000_0000 =====
+# ===== Set Value To TCMP0, TCMP1 =====
+# [ t =       1631 ] WRITE data=32'hfffffff0 to addr=12'h00c with strb=4'b1111 
+# [ t =       1711 ] WRITE data=32'hffffffff to addr=12'h010 with strb=4'b1111 
+# [ t =       1871 ] READ at addr = 12'h00c , the rdata actual = 32'hfffffff0 
+# [ t =       1951 ] READ at addr = 12'h010 , the rdata actual = 32'hffffffff 
+# ===== cmp_64b = 0000_0000_0000_000f =====
+# ===== Enable Interrupt =====
+# [ t =       1951 ] WRITE data=32'h00000001 to addr=12'h014 with strb=4'b0001 
+# ===== Enable Counter =====
+# [ t =       2031 ] WRITE data=32'h00000001 to addr=12'h000 with strb=4'b0001 
+# ===== Wait 18 cycle to check Timer Interrupt Is Asserted or not =====
+# >>> PASS <<<==== Interrupt is asserted 1'b1 =====
+# ===== Write 1 to clear TISR.int_st =====
+# [ t =       2291 ] WRITE data=32'h00000001 to addr=12'h018 with strb=4'b0001 
+# ===== Check Interrupt = 0 ? & Interrupt Status = 0? =====
+# >>> PASS <<<==== Interrupt is deasserted => tim.int = 1'b0 =====
+# ===== Interrupt Status =====
+# [ t =       2451 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# >>> PASS <<< ==== Interrupt status (TISR.int_st) cleared to 0  =====
+# =====================================================================================
+# =========[                        TEST : PASS ALL                       ]============
+# =====================================================================================
+# Test_result PASSED
+# -------------------------------------------------------------------------------------
+# [ t =       2561 ] TEST COMPLETE. Total Errors: 0
+# -------------------------------------------------------------------------------------
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 2561 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 19:56:45 on Dec 01,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

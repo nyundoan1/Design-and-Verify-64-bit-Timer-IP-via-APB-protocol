@@ -1,0 +1,485 @@
+# vsim -coverage -l 6_halt.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit 6_halt.ucdb; log -r /*;run -all" 
+# Start time: 19:56:48 on Dec 01,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit 6_halt.ucdb
+#  log -r /*
+# run -all
+# ===============================================
+# [             Pat name: HALT CHECK            ]
+# ===============================================
+# ========== A. NORMAL MODE (div_en=0) ==========
+# [A1] =====> no halt when dbg_mode = 0, halt_req = 1  <========
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [110] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =        110 ] WRITE data=32'h00000001 to addr=12'h000 with strb=4'b0001 
+# [ t =        191 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:                    5 (64'h0000000000000005)
+# Wait for some cycle  ............................................. 
+# CNT after halt:                   84 (64'h0000000000000054)
+# PASS: Counter continued running (halt ignored in dbg_mode=0)
+# 
+# [A2] ====> halt_req = 1 & dbg_mode = 1  <=======
+# [ t =       1871 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =       1951 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [2050] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =       2050 ] WRITE data=32'h00000001 to addr=12'h000 with strb=4'b0001 
+# [ t =       2150 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:                    5 (64'h0000000000000005)
+# Wait for some cycle  ............................................. 
+# CNT after halt:                    5 (64'h0000000000000005)
+# PASS: Counter HALTED correctly in dbg_mode=1
+# 
+# [A3] ======> Clear halt_req → counter resumes  <======
+# [ t =       3431 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after clear THCSR.halt_req a few cycle:                   55 (64'h0000000000000037)
+# PASS: Counter RESUMED correctly
+# 
+# 
+# ========== B. DIV MODE============
+# ----------------------------------------------------------------------------
+# 
+#  RESET THE STATUS 
+#           0
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [4530] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =       4530 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =       4611 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# [ t =       4691 ] WRITE data=32'h00000002 to addr=12'h000 with strb=4'b0011 
+# [ t =       4771 ] WRITE data=32'h00000003 to addr=12'h000 with strb=4'b0001 
+# [B1]  =====> no halt when dbg_mode = 0 <=========
+# ===== DIV MODE TEST: div_val = 0 =====
+# 
+# [ t =       4851 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:                    5 (64'h0000000000000005)
+# Wait for some cycle  ............................................. 
+# CNT after halt:                  263 (64'h0000000000000107)
+# 
+# PASS: Counter keeps running in DBG=0 (div mode)
+# 
+# [B2]  =====> counter halt when dbg_mode = 1 & halt_req = 1  <=========
+# [ t =      10111 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =      10191 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [10290] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =      10290 ] WRITE data=32'h55667788 to addr=12'h004 with strb=4'b1111 
+# [ t =      10371 ] WRITE data=32'h11223344 to addr=12'h008 with strb=4'b1111 
+# [ t =      10451 ] WRITE data=32'h00000003 to addr=12'h000 with strb=4'b0011 
+# [ t =      10550 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508565 (64'h1122334455667795)
+# 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508565 (64'h1122334455667795)
+# PASS: Counter HALTED (div_mode)
+# 
+# [B3]  =====> clear halt_req → resume counter  <=========
+# [ t =      18631 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508965 (64'h1122334455667925)
+# 
+# PASS: Counter resumed (div mode)
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# 
+#  RESET THE STATUS 
+#           1
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [26730] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =      26730 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =      26811 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# [ t =      26891 ] WRITE data=32'h00000102 to addr=12'h000 with strb=4'b0011 
+# [ t =      26971 ] WRITE data=32'h00000103 to addr=12'h000 with strb=4'b0001 
+# [B1]  =====> no halt when dbg_mode = 0 <=========
+# ===== DIV MODE TEST: div_val = 1 =====
+# 
+# [ t =      27051 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508987 (64'h112233445566793b)
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436509504 (64'h1122334455667b40)
+# 
+# PASS: Counter keeps running in DBG=0 (div mode)
+# 
+# [B2]  =====> counter halt when dbg_mode = 1 & halt_req = 1  <=========
+# [ t =      37491 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =      37571 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [37670] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =      37670 ] WRITE data=32'h55667788 to addr=12'h004 with strb=4'b1111 
+# [ t =      37751 ] WRITE data=32'h11223344 to addr=12'h008 with strb=4'b1111 
+# [ t =      37831 ] WRITE data=32'h00000103 to addr=12'h000 with strb=4'b0011 
+# [ t =      37930 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508565 (64'h1122334455667795)
+# 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508565 (64'h1122334455667795)
+# PASS: Counter HALTED (div_mode)
+# 
+# [B3]  =====> clear halt_req → resume counter  <=========
+# [ t =      54011 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436509365 (64'h1122334455667ab5)
+# 
+# PASS: Counter resumed (div mode)
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# 
+#  RESET THE STATUS 
+#           2
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [70110] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =      70110 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =      70191 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# [ t =      70271 ] WRITE data=32'h00000202 to addr=12'h000 with strb=4'b0011 
+# [ t =      70351 ] WRITE data=32'h00000203 to addr=12'h000 with strb=4'b0001 
+# [B1]  =====> no halt when dbg_mode = 0 <=========
+# ===== DIV MODE TEST: div_val = 2 =====
+# 
+# [ t =      70431 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436509387 (64'h1122334455667acb)
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436510163 (64'h1122334455667dd3)
+# 
+# PASS: Counter keeps running in DBG=0 (div mode)
+# 
+# [B2]  =====> counter halt when dbg_mode = 1 & halt_req = 1  <=========
+# [ t =      86051 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =      86131 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [86230] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =      86230 ] WRITE data=32'h55667788 to addr=12'h004 with strb=4'b1111 
+# [ t =      86311 ] WRITE data=32'h11223344 to addr=12'h008 with strb=4'b1111 
+# [ t =      86391 ] WRITE data=32'h00000203 to addr=12'h000 with strb=4'b0011 
+# [ t =      86490 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508565 (64'h1122334455667795)
+# 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508565 (64'h1122334455667795)
+# PASS: Counter HALTED (div_mode)
+# 
+# [B3]  =====> clear halt_req → resume counter  <=========
+# [ t =     110571 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436509765 (64'h1122334455667c45)
+# 
+# PASS: Counter resumed (div mode)
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# 
+#  RESET THE STATUS 
+#           3
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [134670] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =     134670 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     134751 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# [ t =     134831 ] WRITE data=32'h00000302 to addr=12'h000 with strb=4'b0011 
+# [ t =     134911 ] WRITE data=32'h00000303 to addr=12'h000 with strb=4'b0001 
+# [B1]  =====> no halt when dbg_mode = 0 <=========
+# ===== DIV MODE TEST: div_val = 3 =====
+# 
+# [ t =     134991 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436509787 (64'h1122334455667c5b)
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436510822 (64'h1122334455668066)
+# 
+# PASS: Counter keeps running in DBG=0 (div mode)
+# 
+# [B2]  =====> counter halt when dbg_mode = 1 & halt_req = 1  <=========
+# [ t =     155791 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     155871 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [155970] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =     155970 ] WRITE data=32'h55667788 to addr=12'h004 with strb=4'b1111 
+# [ t =     156051 ] WRITE data=32'h11223344 to addr=12'h008 with strb=4'b1111 
+# [ t =     156131 ] WRITE data=32'h00000303 to addr=12'h000 with strb=4'b0011 
+# [ t =     156230 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508565 (64'h1122334455667795)
+# 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508565 (64'h1122334455667795)
+# PASS: Counter HALTED (div_mode)
+# 
+# [B3]  =====> clear halt_req → resume counter  <=========
+# [ t =     188311 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436510165 (64'h1122334455667dd5)
+# 
+# PASS: Counter resumed (div mode)
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# 
+#  RESET THE STATUS 
+#           4
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [220410] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =     220410 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     220491 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# [ t =     220571 ] WRITE data=32'h00000402 to addr=12'h000 with strb=4'b0011 
+# [ t =     220651 ] WRITE data=32'h00000403 to addr=12'h000 with strb=4'b0001 
+# [B1]  =====> no halt when dbg_mode = 0 <=========
+# ===== DIV MODE TEST: div_val = 4 =====
+# 
+# [ t =     220731 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436510187 (64'h1122334455667deb)
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436511481 (64'h11223344556682f9)
+# 
+# PASS: Counter keeps running in DBG=0 (div mode)
+# 
+# [B2]  =====> counter halt when dbg_mode = 1 & halt_req = 1  <=========
+# [ t =     246711 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     246791 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [246890] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =     246890 ] WRITE data=32'h55667788 to addr=12'h004 with strb=4'b1111 
+# [ t =     246971 ] WRITE data=32'h11223344 to addr=12'h008 with strb=4'b1111 
+# [ t =     247051 ] WRITE data=32'h00000403 to addr=12'h000 with strb=4'b0011 
+# [ t =     247150 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508565 (64'h1122334455667795)
+# 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508565 (64'h1122334455667795)
+# PASS: Counter HALTED (div_mode)
+# 
+# [B3]  =====> clear halt_req → resume counter  <=========
+# [ t =     287231 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436510565 (64'h1122334455667f65)
+# 
+# PASS: Counter resumed (div mode)
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# 
+#  RESET THE STATUS 
+#           5
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [327330] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =     327330 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     327411 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# [ t =     327491 ] WRITE data=32'h00000502 to addr=12'h000 with strb=4'b0011 
+# [ t =     327571 ] WRITE data=32'h00000503 to addr=12'h000 with strb=4'b0001 
+# [B1]  =====> no halt when dbg_mode = 0 <=========
+# ===== DIV MODE TEST: div_val = 5 =====
+# 
+# [ t =     327651 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436510587 (64'h1122334455667f7b)
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436512140 (64'h112233445566858c)
+# 
+# PASS: Counter keeps running in DBG=0 (div mode)
+# 
+# [B2]  =====> counter halt when dbg_mode = 1 & halt_req = 1  <=========
+# [ t =     358811 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     358891 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [358990] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =     358990 ] WRITE data=32'h55667788 to addr=12'h004 with strb=4'b1111 
+# [ t =     359071 ] WRITE data=32'h11223344 to addr=12'h008 with strb=4'b1111 
+# [ t =     359151 ] WRITE data=32'h00000503 to addr=12'h000 with strb=4'b0011 
+# [ t =     359250 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508565 (64'h1122334455667795)
+# 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508565 (64'h1122334455667795)
+# PASS: Counter HALTED (div_mode)
+# 
+# [B3]  =====> clear halt_req → resume counter  <=========
+# [ t =     407331 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436510965 (64'h11223344556680f5)
+# 
+# PASS: Counter resumed (div mode)
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# 
+#  RESET THE STATUS 
+#           6
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [455430] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =     455430 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     455511 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# [ t =     455591 ] WRITE data=32'h00000602 to addr=12'h000 with strb=4'b0011 
+# [ t =     455671 ] WRITE data=32'h00000603 to addr=12'h000 with strb=4'b0001 
+# [B1]  =====> no halt when dbg_mode = 0 <=========
+# ===== DIV MODE TEST: div_val = 6 =====
+# 
+# [ t =     455751 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436510987 (64'h112233445566810b)
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436512799 (64'h112233445566881f)
+# 
+# PASS: Counter keeps running in DBG=0 (div mode)
+# 
+# [B2]  =====> counter halt when dbg_mode = 1 & halt_req = 1  <=========
+# [ t =     492091 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     492171 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [492270] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =     492270 ] WRITE data=32'h55667788 to addr=12'h004 with strb=4'b1111 
+# [ t =     492351 ] WRITE data=32'h11223344 to addr=12'h008 with strb=4'b1111 
+# [ t =     492431 ] WRITE data=32'h00000603 to addr=12'h000 with strb=4'b0011 
+# [ t =     492530 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508565 (64'h1122334455667795)
+# 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508565 (64'h1122334455667795)
+# PASS: Counter HALTED (div_mode)
+# 
+# [B3]  =====> clear halt_req → resume counter  <=========
+# [ t =     548611 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436511365 (64'h1122334455668285)
+# 
+# PASS: Counter resumed (div mode)
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# 
+#  RESET THE STATUS 
+#           7
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [604710] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =     604710 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     604791 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# [ t =     604871 ] WRITE data=32'h00000702 to addr=12'h000 with strb=4'b0011 
+# [ t =     604951 ] WRITE data=32'h00000703 to addr=12'h000 with strb=4'b0001 
+# [B1]  =====> no halt when dbg_mode = 0 <=========
+# ===== DIV MODE TEST: div_val = 7 =====
+# 
+# [ t =     605031 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436511387 (64'h112233445566829b)
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436513458 (64'h1122334455668ab2)
+# 
+# PASS: Counter keeps running in DBG=0 (div mode)
+# 
+# [B2]  =====> counter halt when dbg_mode = 1 & halt_req = 1  <=========
+# [ t =     646551 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     646631 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [646730] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =     646730 ] WRITE data=32'h55667788 to addr=12'h004 with strb=4'b1111 
+# [ t =     646811 ] WRITE data=32'h11223344 to addr=12'h008 with strb=4'b1111 
+# [ t =     646891 ] WRITE data=32'h00000703 to addr=12'h000 with strb=4'b0011 
+# [ t =     646990 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508565 (64'h1122334455667795)
+# 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508565 (64'h1122334455667795)
+# PASS: Counter HALTED (div_mode)
+# 
+# [B3]  =====> clear halt_req → resume counter  <=========
+# [ t =     711071 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436511765 (64'h1122334455668415)
+# 
+# PASS: Counter resumed (div mode)
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# 
+#  RESET THE STATUS 
+#           8
+# --------------                       -----------
+# [0] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [775170] >>>>>>           DBG_MODE IS OFF          <<<<<<
+# -------                             -------------------
+# [ t =     775170 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     775251 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# [ t =     775331 ] WRITE data=32'h00000802 to addr=12'h000 with strb=4'b0011 
+# [ t =     775411 ] WRITE data=32'h00000803 to addr=12'h000 with strb=4'b0001 
+# [B1]  =====> no halt when dbg_mode = 0 <=========
+# ===== DIV MODE TEST: div_val = 8 =====
+# 
+# [ t =     775491 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436511787 (64'h112233445566842b)
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436514117 (64'h1122334455668d45)
+# 
+# PASS: Counter keeps running in DBG=0 (div mode)
+# 
+# [B2]  =====> counter halt when dbg_mode = 1 & halt_req = 1  <=========
+# [ t =     822191 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =     822271 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# --------------                       -----------
+# [1] >>>>>>>>>>>>> SET DBG_MODE <<<<<<<<<<<<<
+# [822370] >>>>>>           DBG_MODE IS ON          <<<<<<
+# -------                             -------------------
+# [ t =     822370 ] WRITE data=32'h55667788 to addr=12'h004 with strb=4'b1111 
+# [ t =     822451 ] WRITE data=32'h11223344 to addr=12'h008 with strb=4'b1111 
+# [ t =     822531 ] WRITE data=32'h00000803 to addr=12'h000 with strb=4'b0011 
+# [ t =     822630 ] WRITE data=32'h00000001 to addr=12'h01c with strb=4'b0001 
+# CNT before halt:  1234605616436508565 (64'h1122334455667795)
+# 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436508565 (64'h1122334455667795)
+# PASS: Counter HALTED (div_mode)
+# 
+# [B3]  =====> clear halt_req → resume counter  <=========
+# [ t =     894711 ] WRITE data=32'h00000000 to addr=12'h01c with strb=4'b0001 
+# Wait for some cycle  ............................................. 
+# CNT after halt:  1234605616436512165 (64'h11223344556685a5)
+# 
+# PASS: Counter resumed (div mode)
+# ----------------------------------------------------------------------------
+# =====================================================================================
+# =========[                        TEST : PASS ALL                       ]============
+# =====================================================================================
+# Test_result PASSED
+# -------------------------------------------------------------------------------------
+# [ t =     966891 ] TEST COMPLETE. Total Errors: 0
+# -------------------------------------------------------------------------------------
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 966891 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 19:56:50 on Dec 01,2025, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

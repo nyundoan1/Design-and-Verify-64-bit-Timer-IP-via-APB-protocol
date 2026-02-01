@@ -1,0 +1,79 @@
+# vsim -coverage -l 32_counter_clear.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit 32_counter_clear.ucdb; log -r /*;run -all" 
+# Start time: 19:56:40 on Dec 01,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit 32_counter_clear.ucdb
+#  log -r /*
+# run -all
+# ====================================================
+# [              Pat name: COUNTER CLEAR             ]
+# ====================================================
+# ============[      COUNTER COUNT      ]=============
+# ====================================================
+# -------------------------------------------------------------------------------------
+# ----------------   1: STOP TIMER (timer_en=0)      ----------------------------------
+# [ t =        100 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b1111 
+# ---------     2: WRITE RELOAD (split from cnt[63:0] -> TDR0/TDR1    -----------------
+# [ t =        230 ] WRITE data=32'h00000000 to addr=12'h004 with strb=4'b1111 
+# [ t =        311 ] WRITE data=32'h00000000 to addr=12'h008 with strb=4'b1111 
+# [ t =        391 ] SETUP COUNTER INIT = 64'h0000000000000000 
+# ---------       3: WRITE DIV_VAL + DIV_EN WHILE TIMER OFF     -----------------
+# [ t =        391 ] WRITE data=32'h00000100 to addr=12'h000 with strb=4'b1111 
+# [ t =        551 ] READ at addr = 12'h000 , the rdata actual = 32'h00000100 
+# [ t =        551 ] expect that rdata at addr=12'h000 is 32'h00000100 
+# [ t =        551 ]    >>>  PASS <<<     |   rdata actual =32'h00000100   =  rdata expect =32'h00000100 
+# -------------------------------------------------------------------------------------
+# [ t =        551 ] SETUP DIV_VAL = 4'b0001 & DIV_EN = 1'b0 
+# ----------------  4: START TIMER (timer_en=1)      ----------------------------------
+# [ t =        551 ] WRITE data=32'h00000101 to addr=12'h000 with strb=4'b1111 
+# ----------------     5: AFTER           8 CYCLE      ----------------------------------
+# [t=       650] CNT_EN = 1 -> CNT64 = 1 (0x0000000000000001)
+# [t=       670] CNT_EN = 1 -> CNT64 = 2 (0x0000000000000002)
+# [t=       690] CNT_EN = 1 -> CNT64 = 3 (0x0000000000000003)
+# [t=       710] CNT_EN = 1 -> CNT64 = 4 (0x0000000000000004)
+# [t=       730] CNT_EN = 1 -> CNT64 = 5 (0x0000000000000005)
+# [t=       750] CNT_EN = 1 -> CNT64 = 6 (0x0000000000000006)
+# [t=       770] CNT_EN = 1 -> CNT64 = 7 (0x0000000000000007)
+# [t=       790] CNT_EN = 1 -> CNT64 = 8 (0x0000000000000008)
+# [ t =        790 ] COUNTER VAL NOW = 64'h0000000000000008 
+# -------------------------------------------------------------------------------------
+# EXPECTED CNT64 = 8 (0x0000000000000008)
+# ACTUAL   CNT64 = 8 (0x0000000000000008)
+#    >>> PASS <<<
+# -----------------------------------------
+# ===================================================
+# ==========[ WRITE TIMER_EN = 0 TO CLEAR  ]=========
+# ===================================================
+# [ t =        790 ] WRITE data=32'h00000000 to addr=12'h000 with strb=4'b0001 
+# [ t =        951 ] READ at addr = 12'h004 , the rdata actual = 32'h00000000 
+# [ t =       1031 ] READ at addr = 12'h008 , the rdata actual = 32'h00000000 
+# EXPECTED CNT64 = 0 (0x0000000000000000)
+# ACTUAL   CNT64 = 0 (0x0000000000000000)
+#    >>> PASS <<<
+# -----------------------------------------
+# =====================================================================================
+# =========[                        TEST : PASS ALL                       ]============
+# =====================================================================================
+# Test_result PASSED
+# -------------------------------------------------------------------------------------
+# [ t =       3130 ] TEST COMPLETE. Total Errors: 0
+# -------------------------------------------------------------------------------------
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 3130 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 19:56:41 on Dec 01,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

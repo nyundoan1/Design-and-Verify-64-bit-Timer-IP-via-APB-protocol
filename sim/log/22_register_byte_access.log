@@ -1,0 +1,348 @@
+# vsim -coverage -l 22_register_byte_access.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit 22_register_byte_access.ucdb; log -r /*;run -all" 
+# Start time: 19:56:32 on Dec 01,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit 22_register_byte_access.ucdb
+#  log -r /*
+# run -all
+# =============================================
+# [   Pat name: Check Register Byte Access    ]
+# =============================================
+# ==============================================
+# ============[   TDR0 Register   ]=============
+# ==============================================
+# >> [ TDR0 Byte 0 - PSTRB = 0001 ] <<
+# [ t =        100 ] WRITE data=32'hffffffff to addr=12'h004 with strb=4'b0001 
+# [ t =        251 ] READ at addr = 12'h004 , the rdata actual = 32'h000000ff 
+# [ t =        251 ] expect that rdata at addr=12'h004 is 32'h000000ff 
+# [ t =        251 ]    >>>  PASS <<<     |   rdata actual =32'h000000ff   =  rdata expect =32'h000000ff 
+# -------------------------------------------------------------------------------------
+# >> [ TDR0 Byte 1 - PSTRB = 0010 ] <<
+# [ t =        251 ] WRITE data=32'hffffffff to addr=12'h004 with strb=4'b0010 
+# [ t =        411 ] READ at addr = 12'h004 , the rdata actual = 32'h0000ffff 
+# [ t =        411 ] expect that rdata at addr=12'h004 is 32'h0000ff00 
+# [ t =        411 ]    >>>  PASS <<<     |   rdata actual =32'h0000ffff   =  rdata expect =32'h0000ff00 
+# -------------------------------------------------------------------------------------
+# >> [ TDR0 Byte 2 - PSTRB = 0100 ] <<
+# [ t =        411 ] WRITE data=32'hffffffff to addr=12'h004 with strb=4'b0100 
+# [ t =        571 ] READ at addr = 12'h004 , the rdata actual = 32'h00ffffff 
+# [ t =        571 ] expect that rdata at addr=12'h004 is 32'h00ff0000 
+# [ t =        571 ]    >>>  PASS <<<     |   rdata actual =32'h00ffffff   =  rdata expect =32'h00ff0000 
+# -------------------------------------------------------------------------------------
+# >> [ TDR0 Byte 3 - PSTRB = 1000 ] <<
+# [ t =        571 ] WRITE data=32'hffffffff to addr=12'h004 with strb=4'b1000 
+# [ t =        731 ] READ at addr = 12'h004 , the rdata actual = 32'hffffffff 
+# [ t =        731 ] expect that rdata at addr=12'h004 is 32'hff000000 
+# [ t =        731 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hff000000 
+# -------------------------------------------------------------------------------------
+# >> [ TDR0 Byte 0&1 - PSTRB = 0011 ] <<
+# [ t =        731 ] WRITE data=32'hffffffff to addr=12'h004 with strb=4'b0011 
+# [ t =        891 ] READ at addr = 12'h004 , the rdata actual = 32'hffffffff 
+# [ t =        891 ] expect that rdata at addr=12'h004 is 32'h0000ffff 
+# [ t =        891 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h0000ffff 
+# -------------------------------------------------------------------------------------
+# >> [ TDR0 Byte 2&3 - PSTRB = 1100 ] <<
+# [ t =        891 ] WRITE data=32'hffffffff to addr=12'h004 with strb=4'b1100 
+# [ t =       1051 ] READ at addr = 12'h004 , the rdata actual = 32'hffffffff 
+# [ t =       1051 ] expect that rdata at addr=12'h004 is 32'hffff0000 
+# [ t =       1051 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hffff0000 
+# -------------------------------------------------------------------------------------
+# ==============================================
+# ============[   TDR1 Register   ]=============
+# ==============================================
+# >> [ TDR1 Byte 0 - PSTRB = 0001 ] <<
+# [ t =       1051 ] WRITE data=32'hffffffff to addr=12'h008 with strb=4'b0001 
+# [ t =       1211 ] READ at addr = 12'h008 , the rdata actual = 32'h000000ff 
+# [ t =       1211 ] expect that rdata at addr=12'h008 is 32'h000000ff 
+# [ t =       1211 ]    >>>  PASS <<<     |   rdata actual =32'h000000ff   =  rdata expect =32'h000000ff 
+# -------------------------------------------------------------------------------------
+# >> [ TDR1 Byte 1 - PSTRB = 0010 ] <<
+# [ t =       1211 ] WRITE data=32'hffffffff to addr=12'h008 with strb=4'b0010 
+# [ t =       1371 ] READ at addr = 12'h008 , the rdata actual = 32'h0000ffff 
+# [ t =       1371 ] expect that rdata at addr=12'h008 is 32'h0000ff00 
+# [ t =       1371 ]    >>>  PASS <<<     |   rdata actual =32'h0000ffff   =  rdata expect =32'h0000ff00 
+# -------------------------------------------------------------------------------------
+# >> [ TDR1 Byte 2 - PSTRB = 0100 ] <<
+# [ t =       1371 ] WRITE data=32'hffffffff to addr=12'h008 with strb=4'b0100 
+# [ t =       1531 ] READ at addr = 12'h008 , the rdata actual = 32'h00ffffff 
+# [ t =       1531 ] expect that rdata at addr=12'h008 is 32'h00ff0000 
+# [ t =       1531 ]    >>>  PASS <<<     |   rdata actual =32'h00ffffff   =  rdata expect =32'h00ff0000 
+# -------------------------------------------------------------------------------------
+# >> [ TDR1 Byte 3 - PSTRB = 1000 ] <<
+# [ t =       1531 ] WRITE data=32'hffffffff to addr=12'h008 with strb=4'b1000 
+# [ t =       1691 ] READ at addr = 12'h008 , the rdata actual = 32'hffffffff 
+# [ t =       1691 ] expect that rdata at addr=12'h008 is 32'hff000000 
+# [ t =       1691 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hff000000 
+# -------------------------------------------------------------------------------------
+# >> [ TDR1 Byte 0&1 - PSTRB = 0011 ] <<
+# [ t =       1691 ] WRITE data=32'hffffffff to addr=12'h008 with strb=4'b0011 
+# [ t =       1851 ] READ at addr = 12'h008 , the rdata actual = 32'hffffffff 
+# [ t =       1851 ] expect that rdata at addr=12'h008 is 32'h0000ffff 
+# [ t =       1851 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h0000ffff 
+# -------------------------------------------------------------------------------------
+# >> [ TDR1 Byte 2&3 - PSTRB = 1100 ] <<
+# [ t =       1851 ] WRITE data=32'hffffffff to addr=12'h008 with strb=4'b1100 
+# [ t =       2011 ] READ at addr = 12'h008 , the rdata actual = 32'hffffffff 
+# [ t =       2011 ] expect that rdata at addr=12'h008 is 32'hffff0000 
+# [ t =       2011 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hffff0000 
+# -------------------------------------------------------------------------------------
+# ==============================================
+# ============[   TCMP0 Register   ]=============
+# ==============================================
+# >> [ TCMP0 Byte 0 - PSTRB = 0001 ] <<
+# [ t =       2011 ] WRITE data=32'hffffffff to addr=12'h00c with strb=4'b0001 
+# [ t =       2171 ] READ at addr = 12'h00c , the rdata actual = 32'hffffffff 
+# [ t =       2171 ] expect that rdata at addr=12'h00c is 32'h000000ff 
+# [ t =       2171 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h000000ff 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP0 Byte 1 - PSTRB = 0010 ] <<
+# [ t =       2171 ] WRITE data=32'hffffffff to addr=12'h00c with strb=4'b0010 
+# [ t =       2331 ] READ at addr = 12'h00c , the rdata actual = 32'hffffffff 
+# [ t =       2331 ] expect that rdata at addr=12'h00c is 32'h0000ff00 
+# [ t =       2331 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h0000ff00 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP0 Byte 2 - PSTRB = 0100 ] <<
+# [ t =       2331 ] WRITE data=32'hffffffff to addr=12'h00c with strb=4'b0100 
+# [ t =       2491 ] READ at addr = 12'h00c , the rdata actual = 32'hffffffff 
+# [ t =       2491 ] expect that rdata at addr=12'h00c is 32'h00ff0000 
+# [ t =       2491 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h00ff0000 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP0 Byte 3 - PSTRB = 1000 ] <<
+# [ t =       2491 ] WRITE data=32'hffffffff to addr=12'h00c with strb=4'b1000 
+# [ t =       2651 ] READ at addr = 12'h00c , the rdata actual = 32'hffffffff 
+# [ t =       2651 ] expect that rdata at addr=12'h00c is 32'hff000000 
+# [ t =       2651 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hff000000 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP0 Byte 0&1 - PSTRB = 0011 ] <<
+# [ t =       2651 ] WRITE data=32'hffffffff to addr=12'h00c with strb=4'b0011 
+# [ t =       2811 ] READ at addr = 12'h00c , the rdata actual = 32'hffffffff 
+# [ t =       2811 ] expect that rdata at addr=12'h00c is 32'h0000ffff 
+# [ t =       2811 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h0000ffff 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP0 Byte 2&3 - PSTRB = 1100 ] <<
+# [ t =       2811 ] WRITE data=32'hffffffff to addr=12'h00c with strb=4'b1100 
+# [ t =       2971 ] READ at addr = 12'h00c , the rdata actual = 32'hffffffff 
+# [ t =       2971 ] expect that rdata at addr=12'h00c is 32'hffff0000 
+# [ t =       2971 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hffff0000 
+# -------------------------------------------------------------------------------------
+# ==============================================
+# ============[   TCMP1 Register   ]=============
+# ==============================================
+# >> [ TCMP1 Byte 0 - PSTRB = 0001 ] <<
+# [ t =       2971 ] WRITE data=32'hffffffff to addr=12'h010 with strb=4'b0001 
+# [ t =       3131 ] READ at addr = 12'h010 , the rdata actual = 32'hffffffff 
+# [ t =       3131 ] expect that rdata at addr=12'h010 is 32'h000000ff 
+# [ t =       3131 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h000000ff 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP1 Byte 1 - PSTRB = 0010 ] <<
+# [ t =       3131 ] WRITE data=32'hffffffff to addr=12'h010 with strb=4'b0010 
+# [ t =       3291 ] READ at addr = 12'h010 , the rdata actual = 32'hffffffff 
+# [ t =       3291 ] expect that rdata at addr=12'h010 is 32'h0000ff00 
+# [ t =       3291 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h0000ff00 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP1 Byte 2 - PSTRB = 0100 ] <<
+# [ t =       3291 ] WRITE data=32'hffffffff to addr=12'h010 with strb=4'b0100 
+# [ t =       3451 ] READ at addr = 12'h010 , the rdata actual = 32'hffffffff 
+# [ t =       3451 ] expect that rdata at addr=12'h010 is 32'h00ff0000 
+# [ t =       3451 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h00ff0000 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP1 Byte 3 - PSTRB = 1000 ] <<
+# [ t =       3451 ] WRITE data=32'hffffffff to addr=12'h010 with strb=4'b1000 
+# [ t =       3611 ] READ at addr = 12'h010 , the rdata actual = 32'hffffffff 
+# [ t =       3611 ] expect that rdata at addr=12'h010 is 32'hff000000 
+# [ t =       3611 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hff000000 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP1 Byte 0&1 - PSTRB = 0011 ] <<
+# [ t =       3611 ] WRITE data=32'hffffffff to addr=12'h010 with strb=4'b0011 
+# [ t =       3771 ] READ at addr = 12'h010 , the rdata actual = 32'hffffffff 
+# [ t =       3771 ] expect that rdata at addr=12'h010 is 32'h0000ffff 
+# [ t =       3771 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'h0000ffff 
+# -------------------------------------------------------------------------------------
+# >> [ TCMP1 Byte 2&3 - PSTRB = 1100 ] <<
+# [ t =       3771 ] WRITE data=32'hffffffff to addr=12'h010 with strb=4'b1100 
+# [ t =       3931 ] READ at addr = 12'h010 , the rdata actual = 32'hffffffff 
+# [ t =       3931 ] expect that rdata at addr=12'h010 is 32'hffff0000 
+# [ t =       3931 ]    >>>  PASS <<<     |   rdata actual =32'hffffffff   =  rdata expect =32'hffff0000 
+# -------------------------------------------------------------------------------------
+# =============================================
+# ============[    TCR Register    ]=============
+# =============================================
+# >> [ TCR Access Byte 0 - PSTRB = 0001 ] <<
+# [ t =       3931 ] WRITE data=32'h33333333 to addr=12'h000 with strb=4'b0001 
+# [ t =       4091 ] READ at addr = 12'h000 , the rdata actual = 32'h00000103 
+# [ t =       4091 ] expect that rdata at addr=12'h000 is 32'h00000103 
+# [ t =       4091 ]    >>>  PASS <<<     |   rdata actual =32'h00000103   =  rdata expect =32'h00000103 
+# -------------------------------------------------------------------------------------
+# >> [ TCR Access Byte 1 - PSTRB = 0010 ] <<
+# [ t =       4091 ] WRITE data=32'h33333333 to addr=12'h000 with strb=4'b0010 
+# [ t =       4251 ] READ at addr = 12'h000 , the rdata actual = 32'h00000103 
+# [ t =       4251 ] expect that rdata at addr=12'h000 is 32'h00000103 
+# [ t =       4251 ]    >>>  PASS <<<     |   rdata actual =32'h00000103   =  rdata expect =32'h00000103 
+# -------------------------------------------------------------------------------------
+# >> [ TCR Access Byte 2 - PSTRB = 0100 ] <<
+# [ t =       4251 ] WRITE data=32'h33333333 to addr=12'h000 with strb=4'b0100 
+# [ t =       4411 ] READ at addr = 12'h000 , the rdata actual = 32'h00000103 
+# [ t =       4411 ] expect that rdata at addr=12'h000 is 32'h00000103 
+# [ t =       4411 ]    >>>  PASS <<<     |   rdata actual =32'h00000103   =  rdata expect =32'h00000103 
+# -------------------------------------------------------------------------------------
+# >> [ TCR Access Byte 3 - PSTRB = 1000 ] <<
+# [ t =       4411 ] WRITE data=32'h33333333 to addr=12'h000 with strb=4'b1000 
+# [ t =       4571 ] READ at addr = 12'h000 , the rdata actual = 32'h00000103 
+# [ t =       4571 ] expect that rdata at addr=12'h000 is 32'h00000103 
+# [ t =       4571 ]    >>>  PASS <<<     |   rdata actual =32'h00000103   =  rdata expect =32'h00000103 
+# -------------------------------------------------------------------------------------
+# >> [ TCR Access Byte 0 & 1 - PSTRB = 0011 ] <<
+# [ t =       4571 ] WRITE data=32'h33333333 to addr=12'h000 with strb=4'b0011 
+# [ t =       4731 ] READ at addr = 12'h000 , the rdata actual = 32'h00000103 
+# [ t =       4731 ] expect that rdata at addr=12'h000 is 32'h00000103 
+# [ t =       4731 ]    >>>  PASS <<<     |   rdata actual =32'h00000103   =  rdata expect =32'h00000103 
+# -------------------------------------------------------------------------------------
+# >> [ TCR Access Byte 2 & 3 - PSTRB = 1100 ] <<
+# [ t =       4731 ] WRITE data=32'h55555555 to addr=12'h000 with strb=4'b1100 
+# [ t =       4891 ] READ at addr = 12'h000 , the rdata actual = 32'h00000103 
+# [ t =       4891 ] expect that rdata at addr=12'h000 is 32'h00000103 
+# [ t =       4891 ]    >>>  PASS <<<     |   rdata actual =32'h00000103   =  rdata expect =32'h00000103 
+# -------------------------------------------------------------------------------------
+# ==============================================
+# =============[   TIER Register   ]=============
+# ==============================================
+# >> [ TIER Access Byte 0 - PSTRB = 0001 ] <<
+# [ t =       4891 ] WRITE data=32'h55555555 to addr=12'h014 with strb=4'b0001 
+# [ t =       5051 ] READ at addr = 12'h014 , the rdata actual = 32'h00000001 
+# [ t =       5051 ] expect that rdata at addr=12'h014 is 32'h00000001 
+# [ t =       5051 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# >> [ TIER Access Byte 1 - PSTRB = 0010 ] <<
+# [ t =       5051 ] WRITE data=32'hffffffff to addr=12'h014 with strb=4'b0010 
+# [ t =       5211 ] READ at addr = 12'h014 , the rdata actual = 32'h00000001 
+# [ t =       5211 ] expect that rdata at addr=12'h014 is 32'h00000000 
+# [ t =       5211 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ TIER Access Byte 2 - PSTRB = 0100 ] <<
+# [ t =       5211 ] WRITE data=32'hffffffff to addr=12'h014 with strb=4'b0100 
+# [ t =       5371 ] READ at addr = 12'h014 , the rdata actual = 32'h00000001 
+# [ t =       5371 ] expect that rdata at addr=12'h014 is 32'h00000000 
+# [ t =       5371 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ TIER Access Byte 3 - PSTRB = 1000 ] <<
+# [ t =       5371 ] WRITE data=32'hffffffff to addr=12'h014 with strb=4'b1000 
+# [ t =       5531 ] READ at addr = 12'h014 , the rdata actual = 32'h00000001 
+# [ t =       5531 ] expect that rdata at addr=12'h014 is 32'h00000000 
+# [ t =       5531 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ TIER Access Byte 0&1 - PSTRB = 0011 ] <<
+# [ t =       5531 ] WRITE data=32'hffffffff to addr=12'h014 with strb=4'b0011 
+# [ t =       5691 ] READ at addr = 12'h014 , the rdata actual = 32'h00000001 
+# [ t =       5691 ] expect that rdata at addr=12'h014 is 32'h00000001 
+# [ t =       5691 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# >> [ TIER Access Byte 2&3 - PSTRB = 1100 ] <<
+# [ t =       5691 ] WRITE data=32'hffffffff to addr=12'h014 with strb=4'b0011 
+# [ t =       5851 ] READ at addr = 12'h014 , the rdata actual = 32'h00000001 
+# [ t =       5851 ] expect that rdata at addr=12'h014 is 32'h00000001 
+# [ t =       5851 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# ==============================================
+# =============[   TISR Register   ]=============
+# ==============================================
+# >> [ TISR Access Byte 0 - PSTRB = 0001 ] <<
+# [ t =       5851 ] WRITE data=32'hffffffff to addr=12'h018 with strb=4'b0001 
+# [ t =       6011 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =       6011 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =       6011 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ TISR Access Byte 1 - PSTRB = 0010 ] <<
+# [ t =       6011 ] WRITE data=32'hffffffff to addr=12'h018 with strb=4'b0010 
+# [ t =       6171 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =       6171 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =       6171 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ TISR Access Byte 2 - PSTRB = 0100 ] <<
+# [ t =       6171 ] WRITE data=32'hffffffff to addr=12'h018 with strb=4'b0100 
+# [ t =       6331 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =       6331 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =       6331 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ TISR Access Byte 3 - PSTRB = 1000 ] <<
+# [ t =       6331 ] WRITE data=32'hffffffff to addr=12'h018 with strb=4'b1000 
+# [ t =       6491 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =       6491 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =       6491 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ TISR Access Byte 0 & 1 - PSTRB = 0011 ] <<
+# [ t =       6491 ] WRITE data=32'hffffffff to addr=12'h018 with strb=4'b0011 
+# [ t =       6651 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =       6651 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =       6651 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ TISR Access Byte 2 & 3 - PSTRB = 1100 ] <<
+# [ t =       6651 ] WRITE data=32'hffffffff to addr=12'h018 with strb=4'b0011 
+# [ t =       6811 ] READ at addr = 12'h018 , the rdata actual = 32'h00000000 
+# [ t =       6811 ] expect that rdata at addr=12'h018 is 32'h00000000 
+# [ t =       6811 ]    >>>  PASS <<<     |   rdata actual =32'h00000000   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# ==============================================
+# ============[   THCSR Register   ]=============
+# ==============================================
+# >> [ THCSR Access Byte 0 - PSTRB = 0001 ] <<
+# [ t =       6811 ] WRITE data=32'h55555555 to addr=12'h01c with strb=4'b0001 
+# [ t =       6971 ] READ at addr = 12'h01c , the rdata actual = 32'h00000001 
+# [ t =       6971 ] expect that rdata at addr=12'h01c is 32'h00000001 
+# [ t =       6971 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# >> [ THCSR Access Byte 1 - PSTRB = 0010 ] <<
+# [ t =       6971 ] WRITE data=32'hffffffff to addr=12'h01c with strb=4'b0010 
+# [ t =       7131 ] READ at addr = 12'h01c , the rdata actual = 32'h00000001 
+# [ t =       7131 ] expect that rdata at addr=12'h01c is 32'h00000000 
+# [ t =       7131 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ THCSR Access Byte 2 - PSTRB = 0100 ] <<
+# [ t =       7131 ] WRITE data=32'hffffffff to addr=12'h01c with strb=4'b0100 
+# [ t =       7291 ] READ at addr = 12'h01c , the rdata actual = 32'h00000001 
+# [ t =       7291 ] expect that rdata at addr=12'h01c is 32'h00000000 
+# [ t =       7291 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ THCSR Access Byte 3 - PSTRB = 1000 ] <<
+# [ t =       7291 ] WRITE data=32'hffffffff to addr=12'h01c with strb=4'b1000 
+# [ t =       7451 ] READ at addr = 12'h01c , the rdata actual = 32'h00000001 
+# [ t =       7451 ] expect that rdata at addr=12'h01c is 32'h00000000 
+# [ t =       7451 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000000 
+# -------------------------------------------------------------------------------------
+# >> [ THCSR Access Byte 0 & 1 - PSTRB = 0011 ] <<
+# [ t =       7451 ] WRITE data=32'hffffffff to addr=12'h01c with strb=4'b0011 
+# [ t =       7611 ] READ at addr = 12'h01c , the rdata actual = 32'h00000001 
+# [ t =       7611 ] expect that rdata at addr=12'h01c is 32'h00000001 
+# [ t =       7611 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# >> [ THCSR Access Byte 2 & 3 - PSTRB = 1100 ] <<
+# [ t =       7611 ] WRITE data=32'hffffffff to addr=12'h01c with strb=4'b0011 
+# [ t =       7771 ] READ at addr = 12'h01c , the rdata actual = 32'h00000001 
+# [ t =       7771 ] expect that rdata at addr=12'h01c is 32'h00000001 
+# [ t =       7771 ]    >>>  PASS <<<     |   rdata actual =32'h00000001   =  rdata expect =32'h00000001 
+# -------------------------------------------------------------------------------------
+# =====================================================================================
+# =========[                        TEST : PASS ALL                       ]============
+# =====================================================================================
+# Test_result PASSED
+# -------------------------------------------------------------------------------------
+# [ t =       7871 ] TEST COMPLETE. Total Errors: 0
+# -------------------------------------------------------------------------------------
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 7871 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 19:56:33 on Dec 01,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
