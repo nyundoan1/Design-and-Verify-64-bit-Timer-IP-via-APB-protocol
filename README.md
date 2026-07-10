@@ -22,11 +22,11 @@ The project follows a **design-first, verification-driven methodology**, coverin
 The project is organized into separate RTL, verification, simulation, and documentation directories.
 
 ```text
+report/       Specification and documentation
 rtl/          RTL source files
+sim/          Simulation scripts
 tb/           Testbench
 testcases/    Directed testcases
-sim/          Simulation scripts
-docs/         Specification and documentation
 ```
 
 ---
