@@ -1,149 +1,214 @@
-# Design and Verify 64-bit Timer IP via APB Protocol
+# Design and Verification of a 64-bit Timer IP with APB Interface
 
-## Overview
-This project implements a configurable 64-bit Timer IP with a standard APB slave interface, including a complete design specification, RTL implementation, and functional verification.
+## Project Overview
 
-The timer supports normal and divided counting modes, compare-match interrupt generation, debug halt functionality, and robust APB error handling.  
-The project follows a design-first, verification-driven methodology suitable for SoC integration.
+This project presents the RTL design and functional verification of a configurable **64-bit Timer IP** featuring a standard **AMBA APB slave interface**. The timer supports multiple operating modes, including normal counting, programmable clock division, compare-match interrupt generation, and debug halt functionality.
 
----
+The project follows a **design-first, verification-driven methodology**, covering RTL implementation, directed verification, verification planning, simulation, and coverage analysis using **Verilog** and **QuestaSim**.
 
-## Key Features
+### Project Scope
 
-### General
-- 64-bit up-counter with continuous increment behavior
-- APB slave interface (32-bit data width)
-- 12-bit address space
-- Deterministic 1-cycle wait state (PREADY)
-- Byte-write support via PSTRB[3:0]
-- Active-low asynchronous reset
-
-### Counter Modes
-- Normal Mode  
-  Counter increments every system clock when enabled.
-- Divider Mode  
-  Programmable divide factor from /1 to /256 using DIV_EN and DIV_VAL.  
-  Divider configuration is protected while the timer is running.
-
-### Interrupt System
-- Compare-match interrupt using 64-bit compare value
-- Interrupt enable and mask control
-- RW1C (write-1-to-clear) interrupt status register
-- Interrupt masking without clearing pending status
-
-### Debug and Protection
-- Debug halt mode with counter freeze
-- Illegal register access detection
-- APB error response (PSLVERR) on invalid writes
-- Register protection during active timer operation
+- RTL Design using **Verilog**
+- APB Slave Interface Implementation
+- Directed Functional Verification
+- Verification Planning (VPlan)
+- Simulation using **QuestaSim**
+- Coverage-Driven Verification
 
 ---
 
-## Architecture Overview
+# 1. Project Directory Structure
 
-### Main Blocks
-- APB Register and Counter Block  
-  APB interface, register file, and 64-bit counter integration
-- Counter Control Block  
-  Divider logic, prescaler, and counter enable pulse generation
-- Interrupt Block  
-  Compare-match detection and interrupt generation
+The project is organized into separate RTL, verification, simulation, and documentation directories.
+
+```text
+rtl/          RTL source files
+tb/           Testbench
+testcases/    Directed testcases
+sim/          Simulation scripts
+docs/         Specification and documentation
+```
+
+---
+
+# 2. RTL Architecture
+<img width="1182" height="582" alt="image" src="https://github.com/user-attachments/assets/c201986c-619e-4053-9e1c-cbfc06ff22e7" />
+
+The Timer IP is composed of three major functional blocks: the APB register interface, the counter control logic, and the interrupt generation logic. These blocks work together to provide configurable timer operation while maintaining full APB protocol compliance.
+
+<p align="center">
+  <img src="YOUR_RTL_ARCHITECTURE_IMAGE" width="900">
+</p>
+
+### Main Functional Blocks
+
+- **APB Register Block**
+  - APB read/write interface
+  - Register file implementation
+  - Byte-write support (PSTRB)
+  - Illegal access detection
+
+- **Counter Control Block**
+  - 64-bit counter
+  - Timer enable control
+  - Clock divider
+  - Prescaler logic
+
+- **Interrupt Block**
+  - Compare-match detection
+  - Interrupt generation
+  - Interrupt enable control
+  - RW1C interrupt status handling
 
 ---
 
-## APB Interface Behavior
-- Supports APB read and write transactions
-- Generates single-cycle internal strobes:
-  - wr_en for write access
-  - rd_en for read access
-- Always inserts one wait state for deterministic access
-- Supports byte-level register updates
-- Illegal writes:
-  - Assert PSLVERR
-  - Do not modify register contents
+# 3. Register Specification
 
----
+The Timer IP provides a memory-mapped register interface for timer configuration, counter monitoring, compare value programming, interrupt control, and debug halt management.
 
 ## Register Map
 
 | Address | Register | Description |
-|-------|---------|-------------|
-| 0x00 | TCR   | Timer Control Register |
-| 0x04 | TDR0  | Counter[31:0] |
-| 0x08 | TDR1  | Counter[63:32] |
-| 0x0C | TCMP0 | Compare[31:0] |
-| 0x10 | TCMP1 | Compare[63:32] |
-| 0x14 | TIER  | Interrupt Enable |
-| 0x18 | TISR  | Interrupt Status (RW1C) |
-| 0x1C | THCSR | Halt Control and Status |
+|----------|----------|-------------|
+| 0x00 | TCR | Timer Control Register |
+| 0x04 | TDR0 | Counter[31:0] |
+| 0x08 | TDR1 | Counter[63:32] |
+| 0x0C | TCMP0 | Compare Value[31:0] |
+| 0x10 | TCMP1 | Compare Value[63:32] |
+| 0x14 | TIER | Interrupt Enable Register |
+| 0x18 | TISR | Interrupt Status Register (RW1C) |
+| 0x1C | THCSR | Halt Control and Status Register |
+
+### Register Features
+
+- Timer enable/disable control
+- Programmable clock divider configuration
+- 64-bit counter value access
+- 64-bit compare value configuration
+- Interrupt enable and status control
+- Debug halt configuration
 
 ---
 
-## Counter Behavior
-- TIM_EN = 1 starts the counter
-- TIM_EN transitions from 1 to 0 clear the counter to zero
-- Divider mode increments the counter every 2^DIV_VAL cycles
-- Counter wraps around on overflow (modulo 2^64)
+# 4. Timer Operation
+
+The Timer IP supports multiple operating modes to satisfy different application requirements.
+
+### Normal Mode
+
+- Counter increments every system clock cycle.
+- Counting begins when **TIM_EN** is asserted.
+- Clearing **TIM_EN** resets the counter to zero.
+
+### Divider Mode
+
+- Counter increments according to the programmed divider value.
+- Divider ratio is configurable from **/1 to /256**.
+- Divider configuration is protected while the timer is running.
+
+### Compare-Match Interrupt
+
+- Interrupt is generated when:
+
+```
+Counter == Compare Value
+```
+
+- Interrupt generation is controlled through the interrupt enable register.
+- Interrupt status is cleared using the RW1C mechanism.
+
+### Debug Halt Mode
+
+When both **DBG_MODE** and **HALT_REQ** are asserted:
+
+- Counter stops counting
+- Prescaler is frozen
+- HALT_ACK is asserted
+- Timer resumes normally after halt request is released
 
 ---
 
-## Debug Halt Mode
-- Counter halts only when:
-  - DBG_MODE = 1
-  - HALT_REQ = 1
-- While halted:
-  - Counter and prescaler are frozen
-  - HALT_ACK is asserted
-- Counter resumes seamlessly when halt request is cleared
+# 5. Verification Plan (VPlan)
 
----
+A structured verification plan was developed to validate all functional requirements of the Timer IP. The verification scope covers register functionality, timer operation, interrupt behavior, divider mode, APB protocol compliance, and error handling.
 
-## Verification Strategy
+<p align="center">
 
-### Testbench
-- Directed testbench with golden reference model
-- Full APB read and write verification
-- Byte-write and illegal access testing
-- Divider, interrupt, and halt verification
-
-### Testcases
-- Register reset and access tests
-- Byte access behavior
-- Reserved bit protection
-- Counter run and clear behavior
-- Interrupt generation and clear
-- APB error handling
-- Debug halt operation
-
----
-
-## Coverage
-- Functional coverage defined by verification plan
-- Coverage exclusions justified by unreachable RTL conditions
-- Coverage closure achieved after exclusion
-
----
-
-## Project Structure
-rtl/ RTL source files
-tb/ Testbench
-testcases/ Directed testcases
-sim/ Simulation scripts
-docs/ Specification and documentation
+<img width="1788" height="748" alt="image" src="https://github.com/user-attachments/assets/3a8a1b38-e6dd-41fe-aa63-4598387fe807" />
+<img width="1790" height="462" alt="image" src="https://github.com/user-attachments/assets/8a72a00d-533f-4607-9879-c6decf1ee90f" />
+<img width="1787" height="720" alt="image" src="https://github.com/user-attachments/assets/e9f19099-aee0-4057-894b-1e95c550168c" />
+<img width="1753" height="682" alt="image" src="https://github.com/user-attachments/assets/72a4b510-bf7c-4df8-afe6-1e0ecb3fe339" />
+<img width="1792" height="616" alt="image" src="https://github.com/user-attachments/assets/1356f18c-9dd4-49d1-aa48-5c50ba81eb32" />
 
 
----
 
-## Applications
-- Periodic timer events
-- Timeout detection
-- Real-time counters
-- Low-frequency divided clocks
-- SoC debug and halt control
-- Interrupt-driven scheduling
+  
+</p>
 
 ---
 
 
+# 6. Result
+<img width="1091" height="881" alt="image" src="https://github.com/user-attachments/assets/35d22982-91b0-456b-bb37-f47b9e0c5a87" />
 
 
+# 7. Coverage after exclude
+
+Coverage-driven verification was adopted to evaluate verification completeness and ensure all planned functional scenarios were exercised.
+<img width="830" height="725" alt="image" src="https://github.com/user-attachments/assets/601b1355-54f4-46d7-9bf1-0996baf3d29c" />
+<img width="826" height="426" alt="image" src="https://github.com/user-attachments/assets/1659eb63-3781-410f-a317-9d87d681e72e" />
+
+---
+
+# 8. How to Run
+
+Move to the simulation directory:
+
+```bash
+cd sim/
+```
+
+Clean previous simulation files:
+
+```bash
+make clean
+```
+
+Compile the RTL and testbench:
+
+```bash
+make build
+```
+
+Run a specific testcase:
+
+```bash
+make TESTNAME=<testcase_name>
+```
+
+Open waveform:
+
+```bash
+make wave
+```
+
+Simulation generates:
+
+- Log files
+- Waveform files
+- Coverage database
+
+---
+
+# 8. Applications
+
+The Timer IP can be integrated into various SoC designs, including:
+
+- Periodic Timer Events
+- Timeout Detection
+- Real-Time Counters
+- Clock Division
+- Debug and Halt Control
+- Interrupt-Driven Scheduling
+
+---
