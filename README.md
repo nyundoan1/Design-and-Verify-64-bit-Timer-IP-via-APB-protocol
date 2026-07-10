@@ -32,12 +32,12 @@ testcases/    Directed testcases
 ---
 
 # 2. RTL Architecture
-<img width="1182" height="582" alt="image" src="https://github.com/user-attachments/assets/c201986c-619e-4053-9e1c-cbfc06ff22e7" />
+
 
 The Timer IP is composed of three major functional blocks: the APB register interface, the counter control logic, and the interrupt generation logic. These blocks work together to provide configurable timer operation while maintaining full APB protocol compliance.
 
 <p align="center">
-  <img src="YOUR_RTL_ARCHITECTURE_IMAGE" width="900">
+  <img width="1182" height="582" alt="image" src="https://github.com/user-attachments/assets/c201986c-619e-4053-9e1c-cbfc06ff22e7" />
 </p>
 
 ### Main Functional Blocks
